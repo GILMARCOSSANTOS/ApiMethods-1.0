@@ -4,10 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.apimethods10.R
-import com.example.apimethods10.activity_delete.Activity_DeleteUser
-import com.example.apimethods10.activity_register.Activity_RegisterUser
-import com.example.apimethods10.activity_see.view.Activity_SeeUser
-import com.example.apimethods10.activity_update.Activity_UpdateUser
+import com.example.apimethods10.activity_delete.ActivityDelete
+import com.example.apimethods10.activity_post.view.ActivityPost
+import com.example.apimethods10.activity_get.view.ActivityGet
+import com.example.apimethods10.activity_update.ActivityUpdate
 import com.google.android.material.button.MaterialButton
 
 class MainActivity : AppCompatActivity() {
@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         private fun createUser() {
 
-            val myClass = Activity_RegisterUser::class
+            val myClass = ActivityPost::class
 
             button_createUser.setOnClickListener {
                 if (button_createUser.isClickable) {
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         private fun seeUser() {
             button_seeUser.setOnClickListener {
                 if (button_seeUser.isClickable) {
-                    val intent = Intent(this, Activity_SeeUser::class.java).apply {
+                    val intent = Intent(this, ActivityGet::class.java).apply {
                     };
                     startActivity(intent)
                     finish()
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         private fun updateUser() {
             button_update.setOnClickListener {
                 if (button_update.isClickable) {
-                    val intent = Intent(this, Activity_UpdateUser::class.java).apply {
+                    val intent = Intent(this, ActivityUpdate::class.java).apply {
                     }
                     startActivity(intent)
                     finish()
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         private fun deleteUser() {
             button_deleteUser.setOnClickListener {
                 if (button_deleteUser.isClickable) {
-                    val intent = Intent(this, Activity_DeleteUser::class.java).apply {
+                    val intent = Intent(this, ActivityDelete::class.java).apply {
                     }
                     startActivity(intent)
                     finish()

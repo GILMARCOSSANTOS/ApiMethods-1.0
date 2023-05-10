@@ -1,4 +1,4 @@
-package com.example.apiregisteruser_10.activity_see.url_relative
+package com.example.apimethods10.activity_get.service
 
 import com.example.apiregisteruser_10.activity_see.model.ModelGetText
 import retrofit2.Call

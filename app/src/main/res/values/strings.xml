@@ -14,4 +14,9 @@
     <string name="update_users">Atualizar Usuários</string>
     <string name="delete_users">Excluir Usuários</string>
     <string name="register_users_actvtsee">Usuários Cadastrados</string>
+    <string name="method_post">Método POST</string>
+    <string name="method_delete">Método DELETE</string>
+    <string name="method_get">Método GET</string>
+    <string name="method_update">Método UPDATE</string>
+    <string name="methods_api">Métodos da API</string>
 </resources>

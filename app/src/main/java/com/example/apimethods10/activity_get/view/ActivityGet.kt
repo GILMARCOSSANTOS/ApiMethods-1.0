@@ -1,4 +1,4 @@
-package com.example.apimethods10.activity_see.view
+package com.example.apimethods10.activity_get.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +13,7 @@ import com.example.apiregisteruser_10.activity_see.model.ModelGetText
 import com.example.apiregisteruser_10.activity_see.response.ResponseGetText
 import com.google.android.material.button.MaterialButton
 
-class Activity_SeeUser : AppCompatActivity() {
+class ActivityGet : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private var listDataUser: List<ModelGetText>? = null
@@ -22,7 +22,7 @@ class Activity_SeeUser : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_see_user)
+        setContentView(R.layout.activity_get)
 
         /* Functions call: */
         globalScopeVariables()

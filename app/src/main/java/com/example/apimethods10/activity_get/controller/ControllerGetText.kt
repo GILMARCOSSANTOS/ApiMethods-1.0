@@ -5,7 +5,7 @@ import android.util.Log
 import com.example.apimethods10.service.ApiConnection
 import com.example.apiregisteruser_10.activity_see.model.ModelGetText
 import com.example.apiregisteruser_10.activity_see.response.ResponseGetText
-import com.example.apiregisteruser_10.activity_see.url_relative.UrlRelativeGetText
+import com.example.apimethods10.activity_get.service.UrlRelativeGetText
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

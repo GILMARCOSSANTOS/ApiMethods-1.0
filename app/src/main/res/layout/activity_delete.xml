@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity_see.view.Activity_SeeUser">
+    tools:context=".activity_delete.ActivityDelete">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/txtVw_header_actvtSee_id"
+        android:id="@+id/txtVw_header_actvtDelete_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black"
         android:gravity="center"
-        android:text="Frases e Palavras"
+        android:text="@string/method_delete"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="35sp"
@@ -20,19 +20,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcclrVw_userDataGet"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/button_back_actvtSee_id"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtVw_header_actvtSee_id" />
-
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_back_actvtSee_id"
+        android:id="@+id/button_back_actvtDelete_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="7dp"
         android:backgroundTint="@color/black"
         android:text="Voltar"
         android:textAllCaps="false"
