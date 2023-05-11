@@ -3,19 +3,15 @@ package com.example.apimethods10.activity_post.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.EditText
 import android.widget.Toast
 import com.example.apimethods10.R
 import com.example.apimethods10.activity_post.controller.PostController
 import com.example.apimethods10.activity_post.model.ModelPost
 import com.example.apimethods10.activity_post.service.PostResponse
-import com.example.apimethods10.activity_post.service.PostService
-import com.example.apimethods10.service.ApiConnection
 import com.example.apimethods10.view.MainActivity
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textview.MaterialTextView
-import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
@@ -25,9 +21,10 @@ class ActivityPost : AppCompatActivity() {
     private lateinit var enterSubTitle: EditText
     private lateinit var enterText: EditText
     private lateinit var buttonSendData: MaterialButton
-    private lateinit var fieldResponse: MaterialTextView
+    private lateinit var fieldResponseChapter: MaterialTextView
+    private lateinit var fieldResponseSubTitle: MaterialTextView
+    private lateinit var fieldResponseText: MaterialTextView
     private lateinit var buttonBack: MaterialButton
-    private val postController = PostController()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,23 +33,43 @@ class ActivityPost : AppCompatActivity() {
         /* Functions: */
         globalVariablesScope()
         backActivity()
-        handlePost()
+        buttonPostData()
     }
 
-    private fun handlePost() {
+    private fun buttonPostData() {
 
-        val modelPost = ModelPost(1, 0, "Título do Post", "xxxConteúdo do Post")
-        val postResponse = object : PostResponse {
+        buttonSendData.setOnClickListener {
+            if (buttonSendData.isClickable) {
 
-            override fun successPostResponse(modelPost: ModelPost) {
-                println("Resposta da API 001" + modelPost.body)
-            }
+                val userId = enterChapter.text.toString()
+                val title = enterSubTitle.text.toString()
+                val body = enterText.text.toString()
 
-            override fun errorPostResponse(errorPost: String) {
-                TODO("Not yet implemented")
+                if (userId.isBlank() || title.isBlank() || body.isBlank()) {
+                    Toast.makeText(this, "Por favor, preencha todos os campos.", Toast.LENGTH_SHORT)
+                        .show()
+                } else {
+                    val postController = PostController()
+                    postController.fetchPost(userId.toInt(), title, body, object : PostResponse {
+
+                        override fun successPostResponse(post: ModelPost) {
+                            val responseChapter = post.userId
+                            fieldResponseChapter.text = "▬ Capítulo = " + responseChapter.toString()
+
+                            val responseSubTitle = post.title
+                            fieldResponseSubTitle.text = "▬ Sub - Título: " + responseSubTitle
+
+                            val responseText = post.body
+                            fieldResponseText.text = "▬ Texto: " + responseText
+                        }
+
+                        override fun errorPostResponse(errorPost: String) {
+                            TODO("Not yet implemented")
+                        }
+                    })
+                }
             }
         }
-        postController.fetchPost(modelPost, postResponse)
     }
 
     private fun backActivity() {
@@ -73,6 +90,8 @@ class ActivityPost : AppCompatActivity() {
         enterSubTitle = findViewById(R.id.edtTxt_subTitle_actvtPost_id)
         enterText = findViewById(R.id.edtTxt_text_actvtPost_id)
         buttonSendData = findViewById(R.id.bttn_postData_actvtPost_id)
-        fieldResponse = findViewById(R.id.txtVw_response_actvtPost_id)
+        fieldResponseChapter = findViewById(R.id.txtVw_responseChapter_actvtPost_id)
+        fieldResponseSubTitle = findViewById(R.id.txtVw_responseSubTitle_actvtPost_id)
+        fieldResponseText = findViewById(R.id.txtVw_responseText_actvtPost_id)
     }
 }
