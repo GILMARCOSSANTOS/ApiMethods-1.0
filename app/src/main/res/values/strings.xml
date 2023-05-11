@@ -19,4 +19,8 @@
     <string name="method_get">Método GET</string>
     <string name="method_update">Método UPDATE</string>
     <string name="methods_api">Métodos da API</string>
+    <string name="back">Voltar</string>
+    <string name="enter_subtitle">Digite o Sub - Título</string>
+    <string name="enter_chapter">Digite o Capítulo</string>
+    <string name="enviar_dados_para_api">Enviar Dados para API</string>
 </resources>

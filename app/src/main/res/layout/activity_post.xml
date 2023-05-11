@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activity_post.view.ActivityPost">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/txtVw_header_actvtRegister_id"
+        android:id="@+id/txtVw_header_actvtPost_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black"
@@ -15,23 +16,116 @@
         android:text="@string/method_post"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="35sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="35sp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="5dp"
+        android:hint="@string/enter_chapter"
+        android:inputType="textCapWords|textImeMultiLine"
+        android:textSize="20sp"
+        app:colorControlActivated="?attr/colorOnPrimary">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtTxt_chapter_actvtPost_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:hint="@string/enter_subtitle"
+        android:inputType="textCapWords|textImeMultiLine"
+        android:textSize="20sp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtTxt_subTitle_actvtPost_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:hint="Digite o Texto"
+        android:inputType="textCapWords|textImeMultiLine"
+        android:textSize="20sp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtTxt_text_actvtPost_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--button for adding data-->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bttn_postData_actvtPost_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="5dp"
+        android:backgroundTint="@color/black"
+        android:text="@string/enviar_dados_para_api"
+        android:textAllCaps="false" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/black" />
+
+    <!--text view for displaying our API response-->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txtVw_response_actvtPost_id"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:text="Response: "
+        android:textSize="21sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black" />
+
+    <ProgressBar
+        android:id="@+id/prgrssBar_actvtPost_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/black"
+        android:visibility="gone"
+        app:indicatorColor="@color/black" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_back_actvtRegister_id"
+        android:id="@+id/button_back_actvtPost_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="7dp"
         android:backgroundTint="@color/black"
-        android:text="Voltar"
+        android:text="@string/back"
         android:textAllCaps="false"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textSize="25sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
