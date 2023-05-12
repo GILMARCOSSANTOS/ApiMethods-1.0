@@ -86,6 +86,15 @@
         android:text="@string/enviar_dados_para_api"
         android:textAllCaps="false" />
 
+    <ProgressBar
+        android:id="@+id/prgrssBar_actvtPost_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/black"
+        android:visibility="gone"
+        app:indicatorColor="@color/black" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -123,15 +132,6 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/black" />
-
-    <ProgressBar
-        android:id="@+id/prgrssBar_actvtPost_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:indeterminateTint="@color/black"
-        android:visibility="gone"
-        app:indicatorColor="@color/black" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_back_actvtPost_id"

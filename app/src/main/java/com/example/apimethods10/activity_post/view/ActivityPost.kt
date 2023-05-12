@@ -3,7 +3,9 @@ package com.example.apimethods10.activity_post.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.Toast
 import com.example.apimethods10.R
 import com.example.apimethods10.activity_post.controller.PostController
@@ -25,6 +27,7 @@ class ActivityPost : AppCompatActivity() {
     private lateinit var fieldResponseSubTitle: MaterialTextView
     private lateinit var fieldResponseText: MaterialTextView
     private lateinit var buttonBack: MaterialButton
+    private lateinit var progressBarLoading: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +56,9 @@ class ActivityPost : AppCompatActivity() {
                     postController.fetchPost(userId.toInt(), title, body, object : PostResponse {
 
                         override fun successPostResponse(post: ModelPost) {
+
+                            progressBarLoading.visibility = View.INVISIBLE
+
                             val responseChapter = post.userId
                             fieldResponseChapter.text = "▬ Capítulo = " + responseChapter.toString()
 
@@ -64,7 +70,7 @@ class ActivityPost : AppCompatActivity() {
                         }
 
                         override fun errorPostResponse(errorPost: String) {
-                            TODO("Not yet implemented")
+                            progressBarLoading.visibility = View.VISIBLE
                         }
                     })
                 }
@@ -93,5 +99,6 @@ class ActivityPost : AppCompatActivity() {
         fieldResponseChapter = findViewById(R.id.txtVw_responseChapter_actvtPost_id)
         fieldResponseSubTitle = findViewById(R.id.txtVw_responseSubTitle_actvtPost_id)
         fieldResponseText = findViewById(R.id.txtVw_responseText_actvtPost_id)
+        progressBarLoading = findViewById(R.id.prgrssBar_actvtPost_id)
     }
 }

@@ -7,14 +7,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.apimethods10.R
-import com.example.apiregisteruser_10.activity_see.model.ModelGetText
+import com.example.apiregisteruser_10.activity_see.model.ModelGet
 import com.example.apiregisteruser_10.utils.Capitalize
 import java.util.*
 
-class AdapterGetText(
+class AdapterGet(
     private val context: Context,
-    private val listUsersObjectJsonItem: List<ModelGetText>
-) : RecyclerView.Adapter<AdapterGetText.UsersViewHolder>() {
+    private val listUsersObjectJsonItem: List<ModelGet>
+) : RecyclerView.Adapter<AdapterGet.UsersViewHolder>() {
 
     private var capitalizeString = Capitalize()
 
@@ -52,13 +52,13 @@ class AdapterGetText(
 
             holder.userId?.text = buildString {
                 append("▬▬▬ CAPÍTULO ")
-                append(dataUser.id)
+                append(dataUser.id.toString().padStart(3,'0'))
                 append(" ▬▬▬")
             }
 
             holder.title?.text = buildString {
                 append("• SUB - TÍTULO: ")
-                append(capitalizeString.capitalize(dataUser.title))
+                append(dataUser.title.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString() })
             }
 
             holder.body?.text = buildString {

@@ -3,22 +3,24 @@ package com.example.apimethods10.activity_get.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.ProgressBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.apimethods10.R
 import com.example.apimethods10.view.MainActivity
-import com.example.apiregisteruser_10.activity_see.adapter.AdapterGetText
-import com.example.apiregisteruser_10.activity_see.controller.ControllerGetText
-import com.example.apiregisteruser_10.activity_see.model.ModelGetText
-import com.example.apiregisteruser_10.activity_see.response.ResponseGetText
+import com.example.apiregisteruser_10.activity_see.adapter.AdapterGet
+import com.example.apiregisteruser_10.activity_see.controller.ControllerGet
+import com.example.apiregisteruser_10.activity_see.model.ModelGet
+import com.example.apiregisteruser_10.activity_see.response.ResponseGet
 import com.google.android.material.button.MaterialButton
 
 class ActivityGet : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
-    private var listDataUser: List<ModelGetText>? = null
+    private var listDataUser: List<ModelGet>? = null
     private lateinit var buttonBack: MaterialButton
-
+    private lateinit var progressBarLoading: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,22 +49,23 @@ class ActivityGet : AppCompatActivity() {
 
     private fun responseController() {
 
-        var responseController = ControllerGetText()
-        responseController.controllergetPersonalData(object : ResponseGetText {
+        var responseController = ControllerGet()
+        responseController.controllergetPersonalData(object : ResponseGet {
 
-            override fun successResponse(response: List<ModelGetText>) {
+            override fun successResponse(response: List<ModelGet>) {
+                progressBarLoading.visibility = View.INVISIBLE
                 listDataUser = response
                 instantiateUsers(listDataUser!!)
             }
 
             override fun errorResponse(erro: String) {
-                // TODO:
+                progressBarLoading.visibility = View.VISIBLE
             }
         })
     }
 
-    private fun instantiateUsers(list: List<ModelGetText>) {
-        val adapterUser = AdapterGetText(this, list)
+    private fun instantiateUsers(list: List<ModelGet>) {
+        val adapterUser = AdapterGet(this, list)
         recyclerView.adapter = adapterUser
     }
 
@@ -76,5 +79,6 @@ class ActivityGet : AppCompatActivity() {
     private fun globalScopeVariables() {
         recyclerView = findViewById(R.id.rcclrVw_userDataGet)
         buttonBack = findViewById(R.id.button_back_actvtSee_id)
+        progressBarLoading = findViewById(R.id.prgrssBar_actvtGet_id)
     }
 }

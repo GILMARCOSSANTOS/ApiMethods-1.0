@@ -3,25 +3,25 @@ package com.example.apiregisteruser_10.activity_see.controller
 import android.content.ContentValues.TAG
 import android.util.Log
 import com.example.apimethods10.service.ApiConnection
-import com.example.apiregisteruser_10.activity_see.model.ModelGetText
-import com.example.apiregisteruser_10.activity_see.response.ResponseGetText
-import com.example.apimethods10.activity_get.service.UrlRelativeGetText
+import com.example.apiregisteruser_10.activity_see.model.ModelGet
+import com.example.apiregisteruser_10.activity_see.response.ResponseGet
+import com.example.apimethods10.activity_get.service.UrlRelativeGet
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ControllerGetText() {
+class ControllerGet() {
 
     private val apiConnection = ApiConnection()
 
-    fun controllergetPersonalData(returnReponse: ResponseGetText) {
-        val service = apiConnection.createService(UrlRelativeGetText::class.java)
-        val call: Call<List<ModelGetText>> = service.urlRelativeGetPersonalData()
+    fun controllergetPersonalData(returnReponse: ResponseGet) {
+        val service = apiConnection.createService(UrlRelativeGet::class.java)
+        val call: Call<List<ModelGet>> = service.urlRelativeGetPersonalData()
 
-        call.enqueue(object : Callback<List<ModelGetText>>{
+        call.enqueue(object : Callback<List<ModelGet>>{
             override fun onResponse(
-                call: Call<List<ModelGetText>>,
-                response: Response<List<ModelGetText>>
+                call: Call<List<ModelGet>>,
+                response: Response<List<ModelGet>>
             ) {
                 response.body()?.let {
                     val dados = response.body()
@@ -31,7 +31,7 @@ class ControllerGetText() {
                 }
             }
 
-            override fun onFailure(call: Call<List<ModelGetText>>, t: Throwable) {
+            override fun onFailure(call: Call<List<ModelGet>>, t: Throwable) {
                 println("Erro API GetPersonalData = ${t.message}")
             }
         })
