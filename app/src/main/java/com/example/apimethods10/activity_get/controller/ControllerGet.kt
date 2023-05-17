@@ -14,7 +14,7 @@ class ControllerGet() {
 
     private val apiConnection = ApiConnection()
 
-    fun controllergetPersonalData(returnReponse: ResponseGet) {
+    fun controllergetPersonalData(returnResponse: ResponseGet) {
         val service = apiConnection.createService(UrlRelativeGet::class.java)
         val call: Call<List<ModelGet>> = service.urlRelativeGetPersonalData()
 
@@ -25,7 +25,7 @@ class ControllerGet() {
             ) {
                 response.body()?.let {
                     val dados = response.body()
-                    returnReponse.successResponse(it)
+                    returnResponse.successResponse(it)
                     println("Response API GetPersonalData = $response")
                     Log.d(TAG, "Resposta da API: $dados")
                 }

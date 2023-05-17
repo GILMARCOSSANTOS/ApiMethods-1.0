@@ -1,7 +1,6 @@
 package com.example.apimethods10.activity_post.model
 
-data class ModelPost(
-    val userId: Int,
+data class ModelPostData(
     val title: String,
     val body: String
 )

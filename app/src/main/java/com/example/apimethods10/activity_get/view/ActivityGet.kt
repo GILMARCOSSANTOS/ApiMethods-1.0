@@ -65,7 +65,7 @@ class ActivityGet : AppCompatActivity() {
     }
 
     private fun instantiateUsers(list: List<ModelGet>) {
-        val adapterUser = AdapterGet(this, list)
+        val adapterUser = AdapterGet(list)
         recyclerView.adapter = adapterUser
     }
 

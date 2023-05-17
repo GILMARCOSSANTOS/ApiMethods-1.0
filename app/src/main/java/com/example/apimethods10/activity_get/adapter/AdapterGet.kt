@@ -1,6 +1,5 @@
 package com.example.apiregisteruser_10.activity_see.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import com.example.apiregisteruser_10.utils.Capitalize
 import java.util.*
 
 class AdapterGet(
-    private val context: Context,
     private val listUsersObjectJsonItem: List<ModelGet>
 ) : RecyclerView.Adapter<AdapterGet.UsersViewHolder>() {
 
@@ -34,15 +32,10 @@ class AdapterGet(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersViewHolder {
-        val layoutInflater = LayoutInflater.from(context).inflate(
-            R.layout.component_users,
-            parent, false
-        )
-        val holder = UsersViewHolder(layoutInflater)
-        var view: View =
-            LayoutInflater.from(parent.getContext()).inflate(R.layout.component_users, parent, false)
 
-        return holder
+        val itemView =
+            LayoutInflater.from(parent.context).inflate(R.layout.component_get, parent, false)
+        return UsersViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: UsersViewHolder, position: Int) {

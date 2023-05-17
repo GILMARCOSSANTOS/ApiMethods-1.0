@@ -1,24 +1,24 @@
 package com.example.apimethods10.activity_post.controller
 
 import android.util.Log
-import com.example.apimethods10.activity_post.model.ModelPost
-import com.example.apimethods10.activity_post.service.PostResponse
-import com.example.apimethods10.activity_post.service.PostService
+import com.example.apimethods10.activity_post.model.ModelPostData
+import com.example.apimethods10.activity_post.service.PostServiceData
+import com.example.apimethods10.activity_post.service.ResponsePostData
 import com.example.apimethods10.service.ApiConnection
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PostController {
+class ControllerPostData {
 
-    fun fetchPost(userId: Int, title: String, body: String, postResponse: PostResponse) {
+    fun fetchPost(title: String, body: String, postResponse: ResponsePostData) {
 
-        val modelPost = ModelPost(userId, title, body)
-        val postService = ApiConnection().createService(PostService::class.java)
+        val modelPost = ModelPostData(title, body)
+        val postService = ApiConnection().createService(PostServiceData::class.java)
 
         if (modelPost != null) {
-            postService.createPost(modelPost).enqueue(object : Callback<ModelPost> {
-                override fun onResponse(call: Call<ModelPost>, response: Response<ModelPost>) {
+            postService.createPostData(modelPost).enqueue(object : Callback<ModelPostData> {
+                override fun onResponse(call: Call<ModelPostData>, response: Response<ModelPostData>) {
                     if (response.isSuccessful) {
                         postResponse.successPostResponse(response.body()!!)
                         val post = response.body()
@@ -30,7 +30,7 @@ class PostController {
                     }
                 }
 
-                override fun onFailure(call: Call<ModelPost>, t: Throwable) {
+                override fun onFailure(call: Call<ModelPostData>, t: Throwable) {
                     Log.e("API", "Falha na comunicação com a API", t)
                 }
             })

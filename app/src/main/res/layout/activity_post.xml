@@ -18,30 +18,20 @@
         android:textColor="@color/white"
         android:textSize="35sp" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txtVw_head_actvtPost_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="5dp"
-        android:hint="@string/enter_chapter"
-        android:inputType="textCapWords|textImeMultiLine"
-        android:textSize="20sp"
-        app:colorControlActivated="?attr/colorOnPrimary">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edtTxt_chapter_actvtPost_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:singleLine="true" />
-    </com.google.android.material.textfield.TextInputLayout>
+        android:gravity="center"
+        android:text="Enviar dados para a API"
+        android:textSize="19dp"
+        android:textStyle="bold"     />
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="7dp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         android:hint="@string/enter_subtitle"
@@ -80,35 +70,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="7dp"
         android:layout_marginEnd="5dp"
         android:backgroundTint="@color/black"
         android:text="@string/enviar_dados_para_api"
         android:textAllCaps="false" />
 
-    <ProgressBar
-        android:id="@+id/prgrssBar_actvtPost_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:indeterminateTint="@color/black"
-        android:visibility="gone"
-        app:indicatorColor="@color/black" />
-
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="7dp"
         android:background="@color/black" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/txtVw_responseChapter_actvtPost_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:text="▬ Capítulo: "
-        android:textSize="21sp" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txtVw_responseSubTitle_actvtPost_id"
@@ -133,16 +105,64 @@
         android:layout_height="1dp"
         android:background="@color/black" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_back_actvtPost_id"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="7dp"
-        android:backgroundTint="@color/black"
-        android:text="@string/back"
-        android:textAllCaps="false"
-        android:textSize="25sp" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="7dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txtVw_response_actvtPost_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Dados da API"
+            android:textSize="19dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/prgrssBar_actvtPost_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/black"
+            android:visibility="gone"
+            app:indicatorColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcclrVw_actvtPost_id"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginBottom="7dp"
+            app:layout_constraintBottom_toTopOf="@id/button_back_actvtPost_id"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_back_actvtPost_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="37dp"
+            android:layout_marginEnd="7dp"
+            android:backgroundTint="@color/black"
+            android:text="@string/back"
+            android:textAllCaps="false"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

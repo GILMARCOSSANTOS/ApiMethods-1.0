@@ -20,6 +20,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txtVw_response_actvtGet_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Dados da API"
+        android:textSize="19dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtVw_header_actvtSee_id" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcclrVw_userDataGet"
         android:layout_width="match_parent"
@@ -27,7 +39,7 @@
         app:layout_constraintBottom_toTopOf="@id/button_back_actvtSee_id"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtVw_header_actvtSee_id" />
+        app:layout_constraintTop_toBottomOf="@id/txtVw_response_actvtGet_id" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_back_actvtSee_id"
@@ -48,12 +60,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:indeterminateTint="@color/black"
         android:visibility="gone"
+        app:indicatorColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:indeterminateTint="@color/black"
-        app:indicatorColor="@color/black" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
