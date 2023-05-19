@@ -102,3 +102,4 @@ class ActivityPost : AppCompatActivity() {
         progressBarLoading = findViewById(R.id.prgrssBar_actvtPost_id)
     }
 }
+/**/
