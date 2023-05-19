@@ -3,17 +3,20 @@ package com.example.apimethods10.activity_post.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
 import com.example.apimethods10.R
-import com.example.apimethods10.activity_post.controller.ControllerPostData
-import com.example.apimethods10.activity_post.model.ModelPostData
-import com.example.apimethods10.activity_post.service.ResponsePostData
+import com.example.apimethods10.activity_post.adapter.AdapterPost
+import com.example.apimethods10.activity_post.controller.ControllerPost
+import com.example.apimethods10.activity_post.model.ModelPost
+import com.example.apimethods10.activity_post.service.ResponsePost
 import com.example.apimethods10.view.MainActivity
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textview.MaterialTextView
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class ActivityPost : AppCompatActivity() {
 
@@ -24,6 +27,9 @@ class ActivityPost : AppCompatActivity() {
     private lateinit var fieldResponseText: MaterialTextView
     private lateinit var buttonBack: MaterialButton
     private lateinit var progressBarLoading: ProgressBar
+    private lateinit var recyclerView: RecyclerView
+    private var adapter: AdapterPost? = null
+    private var controller: ControllerPost? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,38 +39,44 @@ class ActivityPost : AppCompatActivity() {
         globalVariablesScope()
         backActivity()
         buttonPostData()
+
+        recyclerView = findViewById(R.id.rcclrVw_actvtPost_id)
+        adapter = AdapterPost(emptyList()) // Inicializar o adapter
+
+        recyclerView.adapter = adapter
+        controller = ControllerPost()
+
     }
 
     private fun buttonPostData() {
-
         buttonSendData.setOnClickListener {
             if (buttonSendData.isClickable) {
 
+                val id = 0 // Valor padrão para o parâmetro 'id'
                 val title = enterSubTitle.text.toString()
                 val body = enterText.text.toString()
 
-                if ( title.isBlank() || body.isBlank()) {
+                if (title.isBlank() || body.isBlank()) {
                     Toast.makeText(this, "Por favor, preencha todos os campos.", Toast.LENGTH_SHORT)
                         .show()
                 } else {
-                    val postController = ControllerPostData()
-                    postController.fetchPost(title, body, object : ResponsePostData {
-
-                        override fun successPostResponse(post: ModelPostData) {
-
-                            progressBarLoading.visibility = View.INVISIBLE
-
-                            val responseSubTitle = post.title
-                            fieldResponseSubTitle.text = "▬ Sub - Título: " + responseSubTitle
-
-                            val responseText = post.body
-                            fieldResponseText.text = "▬ Texto: " + responseText
+                    GlobalScope.launch {
+                        try {
+                            val posts = controller?.fetchPost(title, body)
+                            runOnUiThread {
+                                if (posts != null && posts.isNotEmpty()) {
+                                    fieldResponseSubTitle.text = "▬ Sub - Título: ${posts[0].title}"
+                                    fieldResponseText.text = "▬ Texto: ${posts[0].body}"
+                                } else {
+                                    Toast.makeText(this@ActivityPost, "Erro ao obter os dados.", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                        } catch (e: Exception) {
+                            runOnUiThread {
+                                Toast.makeText(this@ActivityPost, e.message, Toast.LENGTH_SHORT).show()
+                            }
                         }
-
-                        override fun errorPostResponse(errorPost: String) {
-                            progressBarLoading.visibility = View.VISIBLE
-                        }
-                    })
+                    }
                 }
             }
         }
@@ -74,8 +86,7 @@ class ActivityPost : AppCompatActivity() {
 
         buttonBack.setOnClickListener {
             if (buttonBack.isClickable) {
-                val intent = Intent(this, MainActivity::class.java).apply {
-                }
+                val intent = Intent(this, MainActivity::class.java).apply {}
                 startActivity(intent)
                 finish()
             }
@@ -92,3 +103,5 @@ class ActivityPost : AppCompatActivity() {
         progressBarLoading = findViewById(R.id.prgrssBar_actvtPost_id)
     }
 }
+
+
