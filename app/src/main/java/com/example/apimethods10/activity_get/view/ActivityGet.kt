@@ -17,7 +17,7 @@ import com.google.android.material.button.MaterialButton
 
 class ActivityGet : AppCompatActivity() {
 
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerViewGet: RecyclerView
     private var listDataUser: List<ModelGet>? = null
     private lateinit var buttonBack: MaterialButton
     private lateinit var progressBarLoading: ProgressBar
@@ -31,6 +31,35 @@ class ActivityGet : AppCompatActivity() {
         settingRecyclerView()
         responseController()
         backActivity()
+    }
+
+    private fun responseController() {
+
+        var responseController = ControllerGet()
+        responseController.controllerget(object : ResponseGet {
+
+            override fun successResponse(response: List<ModelGet>) {
+                progressBarLoading.visibility = View.INVISIBLE
+                listDataUser = response
+                instantiateUsers(listDataUser!!)
+            }
+
+            override fun errorResponse(erro: String) {
+                progressBarLoading.visibility = View.VISIBLE
+            }
+        })
+    }
+
+    private fun instantiateUsers(list: List<ModelGet>) {
+        val adapterUser = AdapterGet(this, list)
+        recyclerViewGet.adapter = adapterUser
+    }
+
+    private fun settingRecyclerView() {
+        recyclerViewGet.setHasFixedSize(true)
+        recyclerViewGet.layoutManager = LinearLayoutManager(
+            this, LinearLayoutManager.VERTICAL, false
+        )
     }
 
     private fun backActivity() {
@@ -47,37 +76,8 @@ class ActivityGet : AppCompatActivity() {
         }
     }
 
-    private fun responseController() {
-
-        var responseController = ControllerGet()
-        responseController.controllergetPersonalData(object : ResponseGet {
-
-            override fun successResponse(response: List<ModelGet>) {
-                progressBarLoading.visibility = View.INVISIBLE
-                listDataUser = response
-                instantiateUsers(listDataUser!!)
-            }
-
-            override fun errorResponse(erro: String) {
-                progressBarLoading.visibility = View.VISIBLE
-            }
-        })
-    }
-
-    private fun instantiateUsers(list: List<ModelGet>) {
-        val adapterUser = AdapterGet(this, list)
-        recyclerView.adapter = adapterUser
-    }
-
-    private fun settingRecyclerView() {
-        recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager = LinearLayoutManager(
-            this, LinearLayoutManager.VERTICAL, false
-        )
-    }
-
     private fun globalScopeVariables() {
-        recyclerView = findViewById(R.id.rcclrVw_userDataGet)
+        recyclerViewGet = findViewById(R.id.rcclrVw_userDataGet)
         buttonBack = findViewById(R.id.button_back_actvtSee_id)
         progressBarLoading = findViewById(R.id.prgrssBar_actvtGet_id)
     }

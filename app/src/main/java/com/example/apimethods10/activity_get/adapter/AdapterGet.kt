@@ -35,13 +35,11 @@ class AdapterGet(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersViewHolder {
         val layoutInflater = LayoutInflater.from(context).inflate(
-            R.layout.component_users,
+            R.layout.component_get,
             parent, false
         )
         val holder = UsersViewHolder(layoutInflater)
-        var view: View =
-            LayoutInflater.from(parent.getContext()).inflate(R.layout.component_users, parent, false)
-
+        LayoutInflater.from(parent.context).inflate(R.layout.component_get, parent, false)
         return holder
     }
 
@@ -52,7 +50,7 @@ class AdapterGet(
 
             holder.userId?.text = buildString {
                 append("▬▬▬ CAPÍTULO ")
-                append(dataUser.id.toString().padStart(3,'0'))
+                append(dataUser.id.toString().padStart(3, '0'))
                 append(" ▬▬▬")
             }
 
