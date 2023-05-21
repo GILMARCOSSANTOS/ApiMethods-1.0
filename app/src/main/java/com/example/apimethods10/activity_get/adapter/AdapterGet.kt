@@ -21,12 +21,12 @@ class AdapterGet(
     class UsersViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         var header: TextView? = null
-        var userId: TextView? = null
+        var id: TextView? = null
         var title: TextView? = null
         var body: TextView? = null
 
         init {
-            userId = view.findViewById(R.id.txtVw_userId_listItem_id)
+            id = view.findViewById(R.id.txtVw_userId_listItem_id)
             title = view.findViewById(R.id.txtVw_title_listItem_id)
             body = view.findViewById(R.id.txtVw_body_listItem_id)
             header = view.findViewById(R.id.txtVw_header_actvtSee_id)
@@ -48,7 +48,7 @@ class AdapterGet(
 
         if (dataUser != null) {
 
-            holder.userId?.text = buildString {
+            holder.id?.text = buildString {
                 append("▬▬▬ CAPÍTULO ")
                 append(dataUser.id.toString().padStart(3, '0'))
                 append(" ▬▬▬")

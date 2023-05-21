@@ -45,8 +45,8 @@ class ActivityPost : AppCompatActivity() {
         globalVariablesScope()
         backActivity()
         buttonPostData()
-//        responseControllerPersonalData()
-//        settingRecyclerView()
+        settingRecyclerView()
+        responseControllerPersonalData()
     }
 
     private fun buttonPostData() {
@@ -54,11 +54,10 @@ class ActivityPost : AppCompatActivity() {
         buttonSendData.setOnClickListener {
             if (buttonSendData.isClickable) {
 
-                val userId = enterChapter.text.toString()
                 val title = enterSubTitle.text.toString()
                 val body = enterText.text.toString()
 
-                if (userId.isBlank() || title.isBlank() || body.isBlank()) {
+                if (title.isBlank() || body.isBlank()) {
                     Toast.makeText(this, "Por favor, preencha todos os campos.", Toast.LENGTH_SHORT)
                         .show()
                 } else {
@@ -71,7 +70,6 @@ class ActivityPost : AppCompatActivity() {
     }
 
     private fun responseControllerGet() {
-
         val userId = enterChapter.text.toString()
         val title = enterSubTitle.text.toString()
         val body = enterText.text.toString()
@@ -80,33 +78,56 @@ class ActivityPost : AppCompatActivity() {
         postController.fetchPost(userId.toInt(), title, body, object : PostResponse {
 
             override fun successPostResponse(post: ModelPost) {
-
                 progressBarLoading.visibility = View.INVISIBLE
 
-                val responseChapter = post.userId
-                fieldResponseChapter.text = "▬ Capítulo = " + responseChapter.toString()
+                val newPersonalData = mutableListOf<ModelGetPersonalData>()
 
-                val responseSubTitle = post.title
-                fieldResponseSubTitle.text = "▬ Sub - Título: " + responseSubTitle
+                // Buscar dados estáticos da API
+                val staticDataController = GetControllerPersonalData()
+                staticDataController.controllerGetPersonalData(object : GetResponsePersonalData {
+                    override fun successResponsePersonalData(data: MutableList<ModelGetPersonalData>) {
+                        // Adicionar dados estáticos à lista
+                        newPersonalData.addAll(data)
 
-                val responseText = post.body
-                fieldResponseText.text = "▬ Texto: " + responseText
+                        // Adicionar dados enviados à lista
+                        val personalData = ModelGetPersonalData(
+                            userId = post.userId,
+                            title = post.title,
+                            body = post.body
+                        )
+                        newPersonalData.add(personalData)
+
+                        // Atualizar a RecyclerView com os dados
+                        val adapter = GetAdapterPersonalData(this@ActivityPost, newPersonalData)
+                        recyclerViewGetPersonalData.adapter = adapter
+                    }
+
+                    override fun errorResponsePersonalData(errorPersonalData: String) {
+                        progressBarLoading.visibility = View.VISIBLE
+                    }
+                })
+
+                fieldResponseChapter.text = "▬ Capítulo = ${post.userId}"
+                fieldResponseSubTitle.text = "▬ Sub - Título: ${post.title}"
+                fieldResponseText.text = "▬ Texto: ${post.body}"
             }
 
             override fun errorPostResponse(errorPost: String) {
                 progressBarLoading.visibility = View.VISIBLE
             }
         })
-
     }
 
+
+
     private fun responseControllerPersonalData() {
-        var responseController = GetControllerPersonalData()
+        val responseController = GetControllerPersonalData()
         responseController.controllerGetPersonalData(object : GetResponsePersonalData {
-            override fun successResponsePersonalData(responsePersonalData: List<ModelGetPersonalData>) {
+
+            override fun successResponsePersonalData(data: MutableList<ModelGetPersonalData>) {
                 progressBarLoading.visibility = View.INVISIBLE
-                listPersonalData = responsePersonalData
-                instantiatePersonalData(listPersonalData!!)
+                listPersonalData = data
+                recyclerViewGetPersonalData.adapter?.notifyDataSetChanged()
             }
 
             override fun errorResponsePersonalData(errorPersonalData: String) {
@@ -115,10 +136,14 @@ class ActivityPost : AppCompatActivity() {
         })
     }
 
-    private fun instantiatePersonalData(list: List<ModelGetPersonalData>) {
-        val adapterPersonalData = GetAdapterPersonalData(this, list)
-        recyclerViewGetPersonalData.adapter = adapterPersonalData
-    }
+
+//    private fun instantiatePersonalData(list: List<ModelGetPersonalData>) {
+//        val adapterPersonalData = GetAdapterPersonalData(this, mutableListOf())
+//        recyclerViewGetPersonalData.adapter = adapterPersonalData
+//
+//        // Adicionar os dados ao adapter
+//        adapterPersonalData.addPersonalData(list as MutableList<ModelGetPersonalData>)
+//    }
 
     private fun settingRecyclerView() {
         recyclerViewGetPersonalData.setHasFixedSize(true)

@@ -28,7 +28,7 @@ class GetControllerPersonalData() {
             ) {
                 response.body()?.let {
                     val apiData = response.body()
-                    returnResponse.successResponsePersonalData(it)
+                    returnResponse.successResponsePersonalData(it as MutableList<ModelGetPersonalData>)
                     println("Resposta de Sucesso (PrintLn) GetControllerPersonalData = $response")
                     Log.d(TAG, "Resposta de Sucesso (Log.D) GetControllerPersonalData = $apiData")
                 }

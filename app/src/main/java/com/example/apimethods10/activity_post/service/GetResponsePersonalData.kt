@@ -5,7 +5,7 @@ import com.example.apimethods10.activity_post.model.ModelPost
 
 interface GetResponsePersonalData {
 
-    fun successResponsePersonalData(responsePersonalData: List<ModelGetPersonalData>)
+    fun successResponsePersonalData(data: MutableList<ModelGetPersonalData>)
 
     fun errorResponsePersonalData(errorPersonalData: String = "Erro no Retorno de Dados do POST")
 
