@@ -61,7 +61,7 @@ class ActivityPost : AppCompatActivity() {
                     Toast.makeText(this, "Por favor, preencha todos os campos.", Toast.LENGTH_SHORT)
                         .show()
                 } else {
-                    responseControllerGet()
+                    responseControllerPost()
                 }
                 responseControllerPersonalData()
                 settingRecyclerView()
@@ -69,7 +69,7 @@ class ActivityPost : AppCompatActivity() {
         }
     }
 
-    private fun responseControllerGet() {
+    private fun responseControllerPost() {
         val userId = enterChapter.text.toString()
         val title = enterSubTitle.text.toString()
         val body = enterText.text.toString()
@@ -118,8 +118,6 @@ class ActivityPost : AppCompatActivity() {
         })
     }
 
-
-
     private fun responseControllerPersonalData() {
         val responseController = GetControllerPersonalData()
         responseController.controllerGetPersonalData(object : GetResponsePersonalData {
@@ -135,15 +133,6 @@ class ActivityPost : AppCompatActivity() {
             }
         })
     }
-
-
-//    private fun instantiatePersonalData(list: List<ModelGetPersonalData>) {
-//        val adapterPersonalData = GetAdapterPersonalData(this, mutableListOf())
-//        recyclerViewGetPersonalData.adapter = adapterPersonalData
-//
-//        // Adicionar os dados ao adapter
-//        adapterPersonalData.addPersonalData(list as MutableList<ModelGetPersonalData>)
-//    }
 
     private fun settingRecyclerView() {
         recyclerViewGetPersonalData.setHasFixedSize(true)

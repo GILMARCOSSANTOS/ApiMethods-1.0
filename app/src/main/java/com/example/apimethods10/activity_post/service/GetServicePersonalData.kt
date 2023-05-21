@@ -5,7 +5,6 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 interface GetServicePersonalData {
-
     @GET("posts")
     fun getServicePersonalData(): Call<List<ModelGetPersonalData>>
 }
