@@ -7,7 +7,7 @@
     tools:context=".activity_get.view.ActivityGet">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/txtVw_header_actvtSee_id"
+        android:id="@+id/txtVw_header_actvtGet_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black"
@@ -18,7 +18,18 @@
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+       app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:id="@+id/txtVw_apiData_actvtGet_id"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/txtVw_header_actvtGet_id"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="DADOS DA API"
+        android:textSize="20sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcclrVw_userDataGet"
@@ -27,7 +38,7 @@
         app:layout_constraintBottom_toTopOf="@id/button_back_actvtSee_id"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtVw_header_actvtSee_id" />
+        app:layout_constraintTop_toBottomOf="@id/txtVw_apiData_actvtGet_id" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_back_actvtSee_id"

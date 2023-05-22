@@ -20,16 +20,14 @@ class AdapterGet(
 
     class UsersViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        var header: TextView? = null
         var id: TextView? = null
         var title: TextView? = null
         var body: TextView? = null
 
         init {
-            id = view.findViewById(R.id.txtVw_userId_listItem_id)
-            title = view.findViewById(R.id.txtVw_title_listItem_id)
-            body = view.findViewById(R.id.txtVw_body_listItem_id)
-            header = view.findViewById(R.id.txtVw_header_actvtSee_id)
+            id = view.findViewById(R.id.txtVw_Id_componentGet_id)
+            title = view.findViewById(R.id.txtVw_title_componentGet_id)
+            body = view.findViewById(R.id.txtVw_body_componentGet_id)
         }
     }
 
@@ -49,18 +47,18 @@ class AdapterGet(
         if (dataUser != null) {
 
             holder.id?.text = buildString {
-                append("▬▬▬ CAPÍTULO ")
+                append("▬▬▬▬▬ CAPÍTULO ")
                 append(dataUser.id.toString().padStart(3, '0'))
-                append(" ▬▬▬")
+                append(" ▬▬▬▬▬")
             }
 
             holder.title?.text = buildString {
-                append("• SUB - TÍTULO: ")
+                append("▬▬▬ SUB-TÍTULO: \n")
                 append(dataUser.title.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString() })
             }
 
             holder.body?.text = buildString {
-                append("• TEXTO: ")
+                append("▬▬▬ TEXTO: \n")
                 append(capitalizeString.capitalize(dataUser.body))
             }
         }

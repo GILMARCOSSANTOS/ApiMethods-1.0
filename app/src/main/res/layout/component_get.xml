@@ -13,51 +13,47 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="7dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginBottom="11dp"
         android:orientation="vertical">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/txtVw_userId_listItem_id"
+        <View
             android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txtVw_Id_componentGet_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginTop="11dp"
+            tools:text="▬▬▬ CAPÍTULO ▬▬▬ "
+            android:textSize="20sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txtVw_title_componentGet_id"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="• CAPÍTULO: "
+            android:layout_gravity="left"
+            android:layout_marginStart="7dp"
+            tools:text="▬▬ SUB-TÍTULO : "
+            android:textSize="20sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txtVw_body_componentGet_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginStart="7dp"
+            tools:text="▬▬ TEXTO: "
             android:textSize="20sp" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/txtVw_title_listItem_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="7dp"
-            android:text="• SUB - TÍTULO : "
-            android:textSize="20sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/txtVw_body_listItem_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="7dp"
-            android:layout_marginBottom="11dp"
-            android:text="• TEXTO: "
-            android:textSize="20sp" />
+            android:background="@color/black" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+
 
 </androidx.cardview.widget.CardView>

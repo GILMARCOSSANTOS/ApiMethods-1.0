@@ -25,19 +25,19 @@ class GetAdapterPersonalData(
         var body: TextView? = null
 
         init {
-            id = view.findViewById(R.id.txtVw_userId_componentGetPersonalData_id)
-            title = view.findViewById(R.id.txtVw_title_componentGetPersonalData_id)
-            body = view.findViewById(R.id.txtVw_body_componentGetPersonalData_id)
+            id = view.findViewById(R.id.txtVw_Id_componentGet_id)
+            title = view.findViewById(R.id.txtVw_title_componentGet_id)
+            body = view.findViewById(R.id.txtVw_body_componentGet_id)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GetViewHolderPersonalData {
         val layoutInflater =
-            LayoutInflater.from(context).inflate(R.layout.component_get_personaldata, parent, false)
+            LayoutInflater.from(context).inflate(R.layout.component_get, parent, false)
 
         val holder = GetViewHolderPersonalData(layoutInflater)
         LayoutInflater.from(parent.context)
-            .inflate(R.layout.component_get_personaldata, parent, false)
+            .inflate(R.layout.component_get, parent, false)
         return holder
     }
 
@@ -46,22 +46,18 @@ class GetAdapterPersonalData(
 
         if (dataPersonal != null) {
             holder.id?.text = buildString {
-                append("▬▬▬ CAPÍTULO ")
-                append(dataPersonal.userId.toString().padStart(3, '0'))
-                append(" ▬▬▬")
+                append("▬▬▬▬▬ CAPÍTULO ")
+                append(dataPersonal.id.toString().padStart(3, '0'))
+                append(" ▬▬▬▬▬")
             }
 
             holder.title?.text = buildString {
-                append("• SUB - TÍTULO: ")
-                append(dataPersonal.title.replaceFirstChar {
-                    if (it.isLowerCase()) it.titlecase(
-                        Locale.ROOT
-                    ) else it.toString()
-                })
+                append("▬▬▬ SUB-TÍTULO: \n")
+                append(dataPersonal.title.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString() })
             }
 
             holder.body?.text = buildString {
-                append("• TEXTO: ")
+                append("▬▬▬ TEXTO: \n")
                 append(capitalizeString.capitalize(dataPersonal.body))
             }
         }

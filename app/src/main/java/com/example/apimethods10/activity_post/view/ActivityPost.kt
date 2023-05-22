@@ -91,7 +91,7 @@ class ActivityPost : AppCompatActivity() {
 
                         // Adicionar dados enviados à lista
                         val personalData = ModelGetPersonalData(
-                            userId = post.userId,
+                            id = post.userId,
                             title = post.title,
                             body = post.body
                         )
