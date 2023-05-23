@@ -152,15 +152,15 @@ class ActivityPostPersonalData : AppCompatActivity() {
     }
 
     private fun globalVariablesScope() {
-        buttonBack = findViewById(R.id.bttn_back_actvtPostData_id)
-        enterChapter = findViewById(R.id.edtTxt_chapter_actvtPostData_id)
-        enterSubTitle = findViewById(R.id.edtTxt_subTitle_actvtPostData_id)
-        enterText = findViewById(R.id.edtTxt_text_actvtPostData_id)
-        buttonSendData = findViewById(R.id.bttn_postData_actvtPostData_id)
-        fieldResponseChapter = findViewById(R.id.txtVw_responseChapter_actvtPostData_id)
-        fieldResponseSubTitle = findViewById(R.id.txtVw_responseSubTitle_actvtPostData_id)
-        fieldResponseText = findViewById(R.id.txtVw_responseText_actvtPostData_id)
-        progressBarLoading = findViewById(R.id.prgrssBar_actvtPostData_id)
+        buttonBack = findViewById(R.id.bttn_goTo_actvtPostPersonalData_id)
+        enterChapter = findViewById(R.id.edtTxt_chapter_actvtPostPersonalData_id)
+        enterSubTitle = findViewById(R.id.edtTxt_subTitle_actvtPostPersonalData_id)
+        enterText = findViewById(R.id.edtTxt_text_actvtPostPersonalData_id)
+        buttonSendData = findViewById(R.id.bttn_postData_actvtPostPersonalData_id)
+        fieldResponseChapter = findViewById(R.id.txtVw_responseChapter_actvtPostPersonalData_id)
+        fieldResponseSubTitle = findViewById(R.id.txtVw_responseSubTitle_actvtPostPersonalData_id)
+        fieldResponseText = findViewById(R.id.txtVw_responseText_actvtPostPersonalData_id)
+        progressBarLoading = findViewById(R.id.prgrssBar_actvtPostPersonalData_id)
         recyclerViewGetPersonalData = findViewById(R.id.rcclerVw_actvtPostPersonalData_id)
     }
 }

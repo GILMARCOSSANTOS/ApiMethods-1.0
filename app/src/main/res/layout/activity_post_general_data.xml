@@ -7,7 +7,7 @@
     tools:context=".activity_post.view.ActivityPostGeneralData">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/txtVw_header_actvtPost_id"
+        android:id="@+id/txtVw_header_actvtPostGeneralData_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black"
@@ -21,13 +21,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/lnrLt_edtTxt_actvtPost_id"
+        android:id="@+id/lnrLt_edtTxt_actvtPostGeneralData_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtVw_header_actvtPost_id">
+        app:layout_constraintTop_toBottomOf="@id/txtVw_header_actvtPostGeneralData_id">
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -39,13 +39,10 @@
             android:hint="@string/enter_subtitle"
             android:inputType="textCapWords|textImeMultiLine"
             android:textSize="20sp"
-            app:colorControlActivated="?attr/colorOnPrimary"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtVw_header_actvtPost_id">
+            app:colorControlActivated="?attr/colorOnPrimary">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtTxt_chapter_actvtPost_id"
+                android:id="@+id/edtTxt_chapter_actvtPostGeneralData_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -61,13 +58,10 @@
             android:hint="@string/enter_chapter"
             android:inputType="textCapWords|textImeMultiLine"
             android:textSize="20sp"
-            app:colorControlActivated="?attr/colorOnPrimary"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edtTxt_chapter_actvtPost_id">
+            app:colorControlActivated="?attr/colorOnPrimary">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtTxt_subTitle_actvtPost_id"
+                android:id="@+id/edtTxt_subTitle_actvtPostGeneralData_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -85,7 +79,7 @@
             android:textSize="20sp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtTxt_text_actvtPost_id"
+                android:id="@+id/edtTxt_text_actvtPostGeneralData_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -95,7 +89,7 @@
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/bttn_postData_actvtPost_id"
+        android:id="@+id/bttn_postData_actvtPostGeneralData_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -104,30 +98,30 @@
         android:backgroundTint="@color/black"
         android:text="@string/enviar_dados_para_api"
         android:textAllCaps="false"
-        app:layout_constraintTop_toBottomOf="@id/lnrLt_edtTxt_actvtPost_id" />
+        app:layout_constraintTop_toBottomOf="@id/lnrLt_edtTxt_actvtPostGeneralData_id" />
 
     <ProgressBar
-        android:id="@+id/prgrssBar_actvtPost_id"
+        android:id="@+id/prgrssBar_actvtPostGeneralData_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:indeterminateTint="@color/black"
         android:visibility="visible"
         app:indicatorColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@id/lnrLt_responseAPI_actvtPost_id"
+        app:layout_constraintBottom_toBottomOf="@id/lnrLt_responseAPI_actvtPostGeneralData_id"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/lnrLt_responseAPI_actvtPost_id" />
+        app:layout_constraintTop_toTopOf="@id/lnrLt_responseAPI_actvtPostGeneralData_id" />
 
     <LinearLayout
-        android:id="@+id/lnrLt_responseAPI_actvtPost_id"
+        android:id="@+id/lnrLt_responseAPI_actvtPostGeneralData_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bttn_postData_actvtPost_id">
+        app:layout_constraintTop_toBottomOf="@id/bttn_postData_actvtPostGeneralData_id">
 
         <View
             android:layout_width="match_parent"
@@ -135,7 +129,7 @@
             android:background="@color/black" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/txtVw_responseChapter_actvtPost_id"
+            android:id="@+id/txtVw_responseChapter_actvtPostGeneralData_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -144,7 +138,7 @@
             android:textSize="21sp" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/txtVw_responseSubTitle_actvtPost_id"
+            android:id="@+id/txtVw_responseSubTitle_actvtPostGeneralData_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -153,7 +147,7 @@
             android:textSize="21sp" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/txtVw_responseText_actvtPost_id"
+            android:id="@+id/txtVw_responseText_actvtPostGeneralData_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -169,7 +163,7 @@
     </LinearLayout>
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/txtVw_apiData_actvtPost_id"
+        android:id="@+id/txtVw_apiData_actvtPostGeneralData_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -177,18 +171,18 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lnrLt_responseAPI_actvtPost_id" />
+        app:layout_constraintTop_toBottomOf="@id/lnrLt_responseAPI_actvtPostGeneralData_id" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcclerVw_actvtPost_id"
+        android:id="@+id/rcclerVw_actvtPostGeneralData_id"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtVw_apiData_actvtPost_id" />
+        app:layout_constraintTop_toBottomOf="@id/txtVw_apiData_actvtPostGeneralData_id" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/bttn_back_actvtPost_id"
+        android:id="@+id/bttn_back_actvtPostGeneralData_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
@@ -198,7 +192,7 @@
         android:text="@string/back"
         android:textAllCaps="false"
         android:textSize="25sp"
-       app:layout_constraintBottom_toTopOf="@id/bttn_goTo_actvtPostPersonalData_id"
+        app:layout_constraintBottom_toTopOf="@id/bttn_goTo_actvtPostPersonalData_id"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

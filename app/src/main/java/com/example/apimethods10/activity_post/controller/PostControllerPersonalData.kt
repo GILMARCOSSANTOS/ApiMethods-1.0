@@ -28,13 +28,13 @@ class PostControllerPersonalData() {
                 response.body()?.let {
                     val apiData = response.body()
                     returnResponse.successResponsePersonalData(it as MutableList<ModelPostPersonalData>)
-                    println("Resposta de Sucesso (PrintLn) GetControllerPersonalData = $response")
-                    Log.d(TAG, "Resposta de Sucesso (Log.D) GetControllerPersonalData = $apiData")
+                    println("Resposta de Sucesso (PrintLn) PostControllerPersonalData = $response")
+                    Log.d(TAG, "Resposta de Sucesso (Log.D) PostControllerPersonalData = $apiData")
                 }
             }
 
             override fun onFailure(call: Call<List<ModelPostPersonalData>>, t: Throwable) {
-                println("Resposta de Erro (PrintLn) GetControllerPersonalData = ${t.message}")
+                println("Resposta de Erro (PrintLn) PostControllerPersonalData = ${t.message}")
             }
         })
     }
