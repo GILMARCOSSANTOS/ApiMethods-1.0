@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.apimethods10.R
 import com.example.apimethods10.activity_delete.ActivityDelete
-import com.example.apimethods10.activity_post.view.ActivityPost
+import com.example.apimethods10.activity_post.view.ActivityPostGeneralData
 import com.example.apimethods10.activity_get.view.ActivityGet
 import com.example.apimethods10.activity_update.ActivityUpdate
 import com.google.android.material.button.MaterialButton
@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         private fun createUser() {
 
-            val myClass = ActivityPost::class
+            val myClass = ActivityPostGeneralData::class
 
             button_createUser.setOnClickListener {
                 if (button_createUser.isClickable) {

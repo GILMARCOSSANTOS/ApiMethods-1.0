@@ -7,15 +7,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.apimethods10.R
-import com.example.apimethods10.activity_post.model.ModelGetPersonalData
-import com.example.apimethods10.activity_post.model.ModelPost
+import com.example.apimethods10.activity_post.model.ModelPostPersonalData
 import com.example.apiregisteruser_10.utils.Capitalize
 import java.util.*
 
-class GetAdapterPersonalData(
+class AdapterPostGeneralData(
     private val context: Context,
-    private var listPersonalData: MutableList<ModelGetPersonalData>
-) : RecyclerView.Adapter<GetAdapterPersonalData.GetViewHolderPersonalData>() {
+    private var listPersonalData: MutableList<ModelPostPersonalData>
+) : RecyclerView.Adapter<AdapterPostGeneralData.GetViewHolderPersonalData>() {
 
     private var capitalizeString = Capitalize()
 
@@ -52,12 +51,12 @@ class GetAdapterPersonalData(
             }
 
             holder.title?.text = buildString {
-                append("▬▬▬ SUB-TÍTULO: \n")
+                append("▬▬▬ TÍTULO: \n")
                 append(dataPersonal.title.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString() })
             }
 
             holder.body?.text = buildString {
-                append("▬▬▬ TEXTO: \n")
+                append("▬▬▬ PARÁGRAFO: \n")
                 append(capitalizeString.capitalize(dataPersonal.body))
             }
         }
@@ -67,7 +66,7 @@ class GetAdapterPersonalData(
         return listPersonalData.size
     }
 
-    fun addPersonalData(newData:MutableList<ModelGetPersonalData>) {
+    fun addPersonalData(newData:MutableList<ModelPostPersonalData>) {
         val insertIndex = listPersonalData.size
         listPersonalData.addAll(newData)
         notifyItemRangeInserted(insertIndex, newData.size)

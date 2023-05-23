@@ -10,20 +10,19 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.apimethods10.R
-import com.example.apimethods10.activity_post.adapter.GetAdapterPersonalData
-import com.example.apimethods10.activity_post.controller.GetControllerPersonalData
-import com.example.apimethods10.activity_post.controller.PostController
-import com.example.apimethods10.activity_post.model.ModelGetPersonalData
-import com.example.apimethods10.activity_post.model.ModelPost
-import com.example.apimethods10.activity_post.service.GetResponsePersonalData
-import com.example.apimethods10.activity_post.service.PostResponse
+import com.example.apimethods10.activity_post.adapter.AdapterPostPersonalData
+import com.example.apimethods10.activity_post.controller.PostControllerPersonalData
+import com.example.apimethods10.activity_post.controller.PostControllerGeneralData
+import com.example.apimethods10.activity_post.model.ModelPostPersonalData
+import com.example.apimethods10.activity_post.model.ModelPostGeneralData
+import com.example.apimethods10.activity_post.service.ResponsePostPersonalData
+import com.example.apimethods10.activity_post.service.PostResponseGeneralData
 import com.example.apimethods10.view.MainActivity
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textview.MaterialTextView
 
-class ActivityPost : AppCompatActivity() {
+class ActivityPostPersonalData : AppCompatActivity() {
 
-    private lateinit var buttonGoToActivity: MaterialButton
     private lateinit var enterChapter: EditText
     private lateinit var enterSubTitle: EditText
     private lateinit var enterText: EditText
@@ -34,11 +33,11 @@ class ActivityPost : AppCompatActivity() {
     private lateinit var buttonBack: MaterialButton
     private lateinit var progressBarLoading: ProgressBar
     private lateinit var recyclerViewGetPersonalData: RecyclerView
-    private var listPersonalData: List<ModelGetPersonalData>? = null
+    private var listPersonalData: List<ModelPostPersonalData>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_post)
+        setContentView(R.layout.activity_post_personal_data)
 
         /* Functions: */
         globalVariablesScope()
@@ -46,7 +45,6 @@ class ActivityPost : AppCompatActivity() {
         buttonPostData()
         settingRecyclerView()
         responseControllerPersonalData()
-        goToActivity()
     }
 
     private fun buttonPostData() {
@@ -74,31 +72,31 @@ class ActivityPost : AppCompatActivity() {
         val title = enterSubTitle.text.toString()
         val body = enterText.text.toString()
 
-        val postController = PostController()
-        postController.fetchPost(userId.toInt(), title, body, object : PostResponse {
+        val postController = PostControllerGeneralData()
+        postController.fetchPost(userId.toInt(), title, body, object : PostResponseGeneralData {
 
-            override fun successPostResponse(post: ModelPost) {
+            override fun successPostResponse(post: ModelPostGeneralData) {
                 progressBarLoading.visibility = View.INVISIBLE
 
-                val newPersonalData = mutableListOf<ModelGetPersonalData>()
+                val newPersonalData = mutableListOf<ModelPostPersonalData>()
 
                 // Buscar dados estáticos da API
-                val staticDataController = GetControllerPersonalData()
-                staticDataController.controllerGetPersonalData(object : GetResponsePersonalData {
-                    override fun successResponsePersonalData(data: MutableList<ModelGetPersonalData>) {
+                val staticDataController = PostControllerPersonalData()
+                staticDataController.controllerPersonalData(object : ResponsePostPersonalData {
+                    override fun successResponsePersonalData(data: MutableList<ModelPostPersonalData>) {
                         // Adicionar dados estáticos à lista
                         newPersonalData.addAll(data)
 
                         // Adicionar dados enviados à lista
-                        val personalData = ModelGetPersonalData(
-                            id = post.userId,
+                        val personalData = ModelPostPersonalData(
+                            id = post.id,
                             title = post.title,
                             body = post.body
                         )
                         newPersonalData.add(personalData)
 
                         // Atualizar a RecyclerView com os dados
-                        val adapter = GetAdapterPersonalData(this@ActivityPost, newPersonalData)
+                        val adapter =AdapterPostPersonalData(this@ActivityPostPersonalData, newPersonalData)
                         recyclerViewGetPersonalData.adapter = adapter
                     }
 
@@ -107,7 +105,7 @@ class ActivityPost : AppCompatActivity() {
                     }
                 })
 
-                fieldResponseChapter.text = "▬ Capítulo = ${post.userId}"
+                fieldResponseChapter.text = "▬ Capítulo = ${post.id}"
                 fieldResponseSubTitle.text = "▬ Sub - Título: ${post.title}"
                 fieldResponseText.text = "▬ Texto: ${post.body}"
             }
@@ -119,10 +117,10 @@ class ActivityPost : AppCompatActivity() {
     }
 
     private fun responseControllerPersonalData() {
-        val responseController = GetControllerPersonalData()
-        responseController.controllerGetPersonalData(object : GetResponsePersonalData {
+        val responseController = PostControllerPersonalData()
+        responseController.controllerPersonalData(object : ResponsePostPersonalData {
 
-            override fun successResponsePersonalData(data: MutableList<ModelGetPersonalData>) {
+            override fun successResponsePersonalData(data: MutableList<ModelPostPersonalData>) {
                 progressBarLoading.visibility = View.INVISIBLE
                 listPersonalData = data
                 recyclerViewGetPersonalData.adapter?.notifyDataSetChanged()
@@ -153,33 +151,16 @@ class ActivityPost : AppCompatActivity() {
         }
     }
 
-    private fun goToActivity() {
-
-        buttonGoToActivity.setOnClickListener {
-            if (buttonGoToActivity.isClickable) {
-                val intent = Intent(this, ActivityPostData::class.java).apply {
-                }
-                startActivity(intent)
-                finish()
-            }
-        }
-    }
-
     private fun globalVariablesScope() {
-        buttonGoToActivity = findViewById(R.id.bttn_goTo_actvtPostPersonalData_id)
-        buttonBack = findViewById(R.id.bttn_back_actvtPost_id)
-        enterChapter = findViewById(R.id.edtTxt_chapter_actvtPost_id)
-        enterSubTitle = findViewById(R.id.edtTxt_subTitle_actvtPost_id)
-        enterText = findViewById(R.id.edtTxt_text_actvtPost_id)
-        buttonSendData = findViewById(R.id.bttn_postData_actvtPost_id)
-        fieldResponseChapter = findViewById(R.id.txtVw_responseChapter_actvtPost_id)
-        fieldResponseSubTitle = findViewById(R.id.txtVw_responseSubTitle_actvtPost_id)
-        fieldResponseText = findViewById(R.id.txtVw_responseText_actvtPost_id)
-        progressBarLoading = findViewById(R.id.prgrssBar_actvtPost_id)
-        recyclerViewGetPersonalData = findViewById(R.id.rcclerVw_actvtPost_id)
+        buttonBack = findViewById(R.id.bttn_back_actvtPostData_id)
+        enterChapter = findViewById(R.id.edtTxt_chapter_actvtPostData_id)
+        enterSubTitle = findViewById(R.id.edtTxt_subTitle_actvtPostData_id)
+        enterText = findViewById(R.id.edtTxt_text_actvtPostData_id)
+        buttonSendData = findViewById(R.id.bttn_postData_actvtPostData_id)
+        fieldResponseChapter = findViewById(R.id.txtVw_responseChapter_actvtPostData_id)
+        fieldResponseSubTitle = findViewById(R.id.txtVw_responseSubTitle_actvtPostData_id)
+        fieldResponseText = findViewById(R.id.txtVw_responseText_actvtPostData_id)
+        progressBarLoading = findViewById(R.id.prgrssBar_actvtPostData_id)
+        recyclerViewGetPersonalData = findViewById(R.id.rcclerVw_actvtPostPersonalData_id)
     }
 }
-
-
-
-

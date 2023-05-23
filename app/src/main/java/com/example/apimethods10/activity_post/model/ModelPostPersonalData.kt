@@ -1,6 +1,6 @@
 package com.example.apimethods10.activity_post.model
 
-data class ModelGetPersonalData(
+data class ModelPostPersonalData(
     val id: Int,
     val title: String,
     val body: String

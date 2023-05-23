@@ -53,12 +53,12 @@ class AdapterGet(
             }
 
             holder.title?.text = buildString {
-                append("▬▬▬ SUB-TÍTULO: \n")
+                append("▬▬▬ TÍTULO: \n")
                 append(dataUser.title.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString() })
             }
 
             holder.body?.text = buildString {
-                append("▬▬▬ TEXTO: \n")
+                append("▬▬▬ PARÁGRAFO: \n")
                 append(capitalizeString.capitalize(dataUser.body))
             }
         }
