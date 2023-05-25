@@ -11,7 +11,7 @@ import retrofit2.Response
 
 class ControllerPostPersonalData_GeneralData {
 
-    fun controllerPostGeneralData_Primaryt(id: Int, title: String, body: String, responsePostPersonalData: ResponsePostPersonalData_GeneralData) {
+    fun controllerPostPersonalData(id: Int, title: String, body: String, responsePostPersonalData: ResponsePostPersonalData_GeneralData) {
 
         val modelPersonalData = ModelPostApi(id, title, body)
         val postService = ApiConnection().createService(ServicePostPersonalData_GeneralData::class.java)
@@ -26,12 +26,12 @@ class ControllerPostPersonalData_GeneralData {
                         Log.d("API", "\"Resposta da API 003\" ${post?.title}")
                     } else {
                         val errorBody = response.errorBody()?.string()
-                        Log.e("API", "Erro na criação do post: $errorBody")
+                        Log.d("API", "Erro na criação do post: $errorBody")
                     }
                 }
 
                 override fun onFailure(call: Call<ModelPostApi>, t: Throwable) {
-                    Log.e("API", "Falha na comunicação com a API", t)
+                    Log.d("API", "Falha na comunicação com a API", t)
                 }
             })
         }

@@ -3,6 +3,7 @@ package com.example.apimethods10.activity_post.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.ProgressBar
@@ -18,7 +19,9 @@ import com.example.apimethods10.activity_post.service.ResponsePostGeneralData_Ge
 import com.example.apimethods10.activity_post.service.ResponsePostPersonalData_GeneralData
 import com.example.apimethods10.view.MainActivity
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.tabs.TabLayout.TabGravity
 import com.google.android.material.textview.MaterialTextView
+import retrofit2.http.Tag
 
 class ActivityPostGeneralData : AppCompatActivity() {
 
@@ -33,7 +36,7 @@ class ActivityPostGeneralData : AppCompatActivity() {
     private lateinit var buttonBack: MaterialButton
     private lateinit var progressBarLoading: ProgressBar
     private lateinit var recyclerViewPrimary: RecyclerView
-    private var listPersonalData: List<ModelPostApi>? = null
+    private var listGeneralData: List<ModelPostApi>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,72 +62,82 @@ class ActivityPostGeneralData : AppCompatActivity() {
                     Toast.makeText(this, "Por favor, preencha todos os campos.", Toast.LENGTH_SHORT)
                         .show()
                 } else {
-                  responsePostGeneralData()
+                    responsePostPersonalData()
                 }
-              responseGeneralData()
+               // responseGeneralData()
                 settingRecyclerView()
             }
         }
     }
 
-    private fun responsePostGeneralData() {
+    private fun responsePostPersonalData() {
         val idEditText = enterChapter.text.toString()
         val titleEditText = enterSubTitle.text.toString()
         val bodyEditText = enterText.text.toString()
 
-        val postController = ControllerPostPersonalData_GeneralData()
-        postController.controllerPostGeneralData_Primaryt(idEditText.toInt(), titleEditText, bodyEditText, object : ResponsePostPersonalData_GeneralData {
+        val controllerPersonalData = ControllerPostPersonalData_GeneralData()
+        controllerPersonalData.controllerPostPersonalData(
+            idEditText.toInt(),
+            titleEditText,
+            bodyEditText,
+            object : ResponsePostPersonalData_GeneralData {
 
-            override fun successResponsePostPersonalData(successPostPersonalData: ModelPostApi) {
-                progressBarLoading.visibility = View.INVISIBLE
+                override fun successResponsePostPersonalData(successPostPersonalData: ModelPostApi) {
+                    progressBarLoading.visibility = View.INVISIBLE
 
-                val newPersonalData = mutableListOf<ModelPostApi>()
+                    val newPersonalData = mutableListOf<ModelPostApi>()
 
-                // Buscar dados estáticos da API
-                val staticDataController = ControllerPostGeneralData_GeneralData()
-                staticDataController.controllerGeneralData_primary(object : ResponsePostGeneralData_GeneralData {
+                    // Buscar dados estáticos da API
+                    val staticDataController = ControllerPostGeneralData_GeneralData()
+                    staticDataController.controllerGeneralData_primary(object :
+                        ResponsePostGeneralData_GeneralData {
 
-                    override fun successResponseGeneralData(data: MutableList<ModelPostApi>) {
-                        // Adicionar dados estáticos à lista
-                        newPersonalData.addAll(data)
+                        override fun successResponseGeneralData(data: MutableList<ModelPostApi>) {
+                            // Adicionar dados estáticos à lista
+                            newPersonalData.addAll(data)
 
-                        // Adicionar dados enviados à lista
-                        val personalData = ModelPostApi(
-                            id = successPostPersonalData.id,
-                            title = successPostPersonalData.title,
-                            body = successPostPersonalData.body
-                        )
-                        newPersonalData.add(personalData)
+                            // Adicionar dados enviados à lista
+                            val personalData = ModelPostApi(
+                                id = successPostPersonalData.id,
+                                title = successPostPersonalData.title,
+                                body = successPostPersonalData.body
+                            )
+                            newPersonalData.add(personalData)
 
-                        // Atualizar a RecyclerView com os dados
-                        val adapter = AdapterPostGeneralData_GeneralData(this@ActivityPostGeneralData, newPersonalData)
-                        recyclerViewPrimary.adapter = adapter
-                    }
+                            // Atualizar a RecyclerView com os dados
+                            val adapter = AdapterPostGeneralData_GeneralData(
+                                this@ActivityPostGeneralData,
+                                newPersonalData
+                            )
+                            recyclerViewPrimary.adapter = adapter
+                        }
 
-                    override fun errorResponseGeneralData(errorPersonalData: String) {
-                        progressBarLoading.visibility = View.VISIBLE
-                    }
-                })
+                        override fun errorResponseGeneralData(errorPersonalData: String) {
+                            progressBarLoading.visibility = View.VISIBLE
+                        }
+                    })
 
-                fieldResponseChapter.text = "▬ CAPÍTULO = ${successPostPersonalData.id}"
-                fieldResponseSubTitle.text = "▬ TÍTULO: ${successPostPersonalData.title}"
-                fieldResponseText.text = "▬ PARÁGRAFO: ${successPostPersonalData.body}"
-            }
+                    fieldResponseChapter.text = "▬ CAPÍTULO = ${successPostPersonalData.id}"
+                    fieldResponseSubTitle.text = "▬ TÍTULO: ${successPostPersonalData.title}"
+                    fieldResponseText.text = "▬ PARÁGRAFO: ${successPostPersonalData.body}"
+                }
 
-            override fun errorResponsePostPersonalData(errorPostPersonalData: String) {
-                progressBarLoading.visibility = View.VISIBLE
-            }
-        })
+                override fun errorResponsePostPersonalData(errorPostPersonalData: String) {
+                    progressBarLoading.visibility = View.VISIBLE
+                }
+            })
     }
 
     private fun responseGeneralData() {
         val responseController = ControllerPostGeneralData_GeneralData()
-        responseController.controllerGeneralData_primary(object : ResponsePostGeneralData_GeneralData {
+        responseController.controllerGeneralData_primary(object :
+            ResponsePostGeneralData_GeneralData {
 
-            override fun successResponseGeneralData(data: MutableList<ModelPostApi>) {
+            override fun successResponseGeneralData(bodyData: MutableList<ModelPostApi>) {
                 progressBarLoading.visibility = View.INVISIBLE
-                listPersonalData = data
+                listGeneralData = bodyData
                 recyclerViewPrimary.adapter?.notifyDataSetChanged()
+                Log.d("API", "\"Resposta da API 003\" ${listGeneralData}")
             }
 
             override fun errorResponseGeneralData(errorPersonalData: String) {
@@ -135,7 +148,7 @@ class ActivityPostGeneralData : AppCompatActivity() {
 
     private fun settingRecyclerView() {
         recyclerViewPrimary.setHasFixedSize(true)
-       recyclerViewPrimary.layoutManager = LinearLayoutManager(
+        recyclerViewPrimary.layoutManager = LinearLayoutManager(
             this, LinearLayoutManager.VERTICAL, false
         )
     }
