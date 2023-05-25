@@ -75,7 +75,7 @@ class ActivityPostGeneralData : AppCompatActivity() {
         val postController = ControllerPostPersonalData_GeneralData()
         postController.controllerPostGeneralData_Primaryt(userId.toInt(), title, body, object : ResponsePostPersonalData_GeneralData {
 
-            override fun successPostResponse(post: ModelPostApi) {
+            override fun successResponsePostPersonalData(successPostPersonalData: ModelPostApi) {
                 progressBarLoading.visibility = View.INVISIBLE
 
                 val newPersonalData = mutableListOf<ModelPostApi>()
@@ -90,9 +90,9 @@ class ActivityPostGeneralData : AppCompatActivity() {
 
                         // Adicionar dados enviados à lista
                         val personalData = ModelPostApi(
-                            id = post.id,
-                            title = post.title,
-                            body = post.body
+                            id = successPostPersonalData.id,
+                            title = successPostPersonalData.title,
+                            body = successPostPersonalData.body
                         )
                         newPersonalData.add(personalData)
 
@@ -106,12 +106,12 @@ class ActivityPostGeneralData : AppCompatActivity() {
                     }
                 })
 
-                fieldResponseChapter.text = "▬ CAPÍTULO = ${post.id}"
-                fieldResponseSubTitle.text = "▬ TÍTULO: ${post.title}"
-                fieldResponseText.text = "▬ PARÁGRAFO: ${post.body}"
+                fieldResponseChapter.text = "▬ CAPÍTULO = ${successPostPersonalData.id}"
+                fieldResponseSubTitle.text = "▬ TÍTULO: ${successPostPersonalData.title}"
+                fieldResponseText.text = "▬ PARÁGRAFO: ${successPostPersonalData.body}"
             }
 
-            override fun errorPostResponse(errorPost: String) {
+            override fun errorResponsePostPersonalData(errorPostPersonalData: String) {
                 progressBarLoading.visibility = View.VISIBLE
             }
         })
@@ -177,6 +177,4 @@ class ActivityPostGeneralData : AppCompatActivity() {
         progressBarLoading = findViewById(R.id.prgrssBar_actvtPostGeneralData_id)
         recyclerViewPrimary = findViewById(R.id.rcclerVw_actvtPostGeneralData_id)
     }
-
-    /*sd*/
 }

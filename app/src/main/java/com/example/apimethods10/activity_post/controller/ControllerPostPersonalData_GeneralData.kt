@@ -20,7 +20,7 @@ class ControllerPostPersonalData_GeneralData {
             postService.createPost(modelPersonalData).enqueue(object : Callback<ModelPostApi> {
                 override fun onResponse(call: Call<ModelPostApi>, response: Response<ModelPostApi>) {
                     if (response.isSuccessful) {
-                        responsePostPersonalData.successPostResponse(response.body()!!)
+                        responsePostPersonalData.successResponsePostPersonalData(response.body()!!)
                         val post = response.body()
                         println("Resposta da API 002" + post)
                         Log.d("API", "\"Resposta da API 003\" ${post?.title}")
