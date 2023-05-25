@@ -11,16 +11,16 @@ import retrofit2.Response
 
 class ControllerPostPersonalData_GeneralData {
 
-    fun controllerPostGeneralData_Primaryt(id: Int, title: String, body: String, responsePostGeneralData: ResponsePostPersonalData_GeneralData) {
+    fun controllerPostGeneralData_Primaryt(id: Int, title: String, body: String, responsePostPersonalData: ResponsePostPersonalData_GeneralData) {
 
-        val modelGeneralData = ModelPostApi(id, title, body)
+        val modelPersonalData = ModelPostApi(id, title, body)
         val postService = ApiConnection().createService(ServicePostPersonalData_GeneralData::class.java)
 
-        if (modelGeneralData != null) {
-            postService.createPost(modelGeneralData).enqueue(object : Callback<ModelPostApi> {
+        if (modelPersonalData != null) {
+            postService.createPost(modelPersonalData).enqueue(object : Callback<ModelPostApi> {
                 override fun onResponse(call: Call<ModelPostApi>, response: Response<ModelPostApi>) {
                     if (response.isSuccessful) {
-                        responsePostGeneralData.successPostResponse(response.body()!!)
+                        responsePostPersonalData.successPostResponse(response.body()!!)
                         val post = response.body()
                         println("Resposta da API 002" + post)
                         Log.d("API", "\"Resposta da API 003\" ${post?.title}")
