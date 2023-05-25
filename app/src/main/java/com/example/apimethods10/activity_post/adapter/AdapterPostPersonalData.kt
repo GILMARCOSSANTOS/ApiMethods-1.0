@@ -13,7 +13,7 @@ import java.util.*
 
 class AdapterPostPersonalData(
     private val context: Context,
-    private var listPostPersonalData: MutableList<ModelPostPersonalData>
+    private var listPersonalData: MutableList<ModelPostPersonalData>
 ) : RecyclerView.Adapter<AdapterPostPersonalData.GetViewHolderPersonalData>() {
 
     private var capitalizeString = Capitalize()
@@ -41,34 +41,34 @@ class AdapterPostPersonalData(
     }
 
     override fun onBindViewHolder(holder: GetViewHolderPersonalData, position: Int) {
-        val dataPostPersonal = listPostPersonalData[position]
+        val dataPersonal = listPersonalData[position]
 
-        if (dataPostPersonal != null) {
+        if (dataPersonal != null) {
             holder.id?.text = buildString {
                 append("▬▬▬▬▬ CAPÍTULO ")
-                append(dataPostPersonal.id.toString().padStart(3, '0'))
+                append(dataPersonal.id.toString().padStart(3, '0'))
                 append(" ▬▬▬▬▬")
             }
 
             holder.title?.text = buildString {
                 append("▬▬▬ TÍTULO: \n")
-                append(dataPostPersonal.title.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString() })
+                append(dataPersonal.title.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString() })
             }
 
             holder.body?.text = buildString {
                 append("▬▬▬ PARÁGRAFO: \n")
-                append(capitalizeString.capitalize(dataPostPersonal.body))
+                append(capitalizeString.capitalize(dataPersonal.body))
             }
         }
     }
 
     override fun getItemCount(): Int {
-        return listPostPersonalData.size
+        return listPersonalData.size
     }
 
     fun addPersonalData(newData:MutableList<ModelPostPersonalData>) {
-        val insertIndex = listPostPersonalData.size
-        listPostPersonalData.addAll(newData)
+        val insertIndex = listPersonalData.size
+        listPersonalData.addAll(newData)
         notifyItemRangeInserted(insertIndex, newData.size)
     }
 }
