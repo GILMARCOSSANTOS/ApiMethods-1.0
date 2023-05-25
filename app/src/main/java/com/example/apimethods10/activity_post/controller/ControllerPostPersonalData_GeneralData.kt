@@ -2,8 +2,8 @@ package com.example.apimethods10.activity_post.controller
 
 import android.util.Log
 import com.example.apimethods10.activity_post.model.ModelPostApi
-import com.example.apimethods10.activity_post.service.ResponsePostPersonal_GeneralData
-import com.example.apimethods10.activity_post.service.ServicePostPersonal_GeneralData
+import com.example.apimethods10.activity_post.service.ResponsePostPersonalData_GeneralData
+import com.example.apimethods10.activity_post.service.ServicePostPersonalData_GeneralData
 import com.example.apimethods10.service.ApiConnection
 import retrofit2.Call
 import retrofit2.Callback
@@ -11,10 +11,10 @@ import retrofit2.Response
 
 class ControllerPostPersonalData_GeneralData {
 
-    fun controllerPostGeneralData_Primaryt(id: Int, title: String, body: String, responsePostGeneralData: ResponsePostPersonal_GeneralData) {
+    fun controllerPostGeneralData_Primaryt(id: Int, title: String, body: String, responsePostGeneralData: ResponsePostPersonalData_GeneralData) {
 
         val modelGeneralData = ModelPostApi(id, title, body)
-        val postService = ApiConnection().createService(ServicePostPersonal_GeneralData::class.java)
+        val postService = ApiConnection().createService(ServicePostPersonalData_GeneralData::class.java)
 
         if (modelGeneralData != null) {
             postService.createPost(modelGeneralData).enqueue(object : Callback<ModelPostApi> {

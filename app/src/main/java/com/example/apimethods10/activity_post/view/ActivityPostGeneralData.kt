@@ -15,7 +15,7 @@ import com.example.apimethods10.activity_post.controller.ControllerPostGeneralDa
 import com.example.apimethods10.activity_post.controller.ControllerPostPersonalData_GeneralData
 import com.example.apimethods10.activity_post.model.ModelPostApi
 import com.example.apimethods10.activity_post.service.ResponsePostGeneralData_GeneralData
-import com.example.apimethods10.activity_post.service.ResponsePostPersonal_GeneralData
+import com.example.apimethods10.activity_post.service.ResponsePostPersonalData_GeneralData
 import com.example.apimethods10.view.MainActivity
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textview.MaterialTextView
@@ -73,7 +73,7 @@ class ActivityPostGeneralData : AppCompatActivity() {
         val body = enterText.text.toString()
 
         val postController = ControllerPostPersonalData_GeneralData()
-        postController.controllerPostGeneralData_Primaryt(userId.toInt(), title, body, object : ResponsePostPersonal_GeneralData {
+        postController.controllerPostGeneralData_Primaryt(userId.toInt(), title, body, object : ResponsePostPersonalData_GeneralData {
 
             override fun successPostResponse(post: ModelPostApi) {
                 progressBarLoading.visibility = View.INVISIBLE
