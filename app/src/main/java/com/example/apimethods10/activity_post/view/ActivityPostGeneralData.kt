@@ -10,12 +10,12 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.apimethods10.R
-import com.example.apimethods10.activity_post.adapter.AdapterPostGeneralData
-import com.example.apimethods10.activity_post.controller.PostControllerPersonalData
-import com.example.apimethods10.activity_post.controller.PostControllerGeneralData
+import com.example.apimethods10.activity_post.adapter.AdapterPostGeneralData_Primary
+import com.example.apimethods10.activity_post.controller.PostControllerPersonalData_Primary
+import com.example.apimethods10.activity_post.controller.ControllerPostGeneralData_Primary
 import com.example.apimethods10.activity_post.model.ModelPostApi
-import com.example.apimethods10.activity_post.service.ResponsePostPersonalData
-import com.example.apimethods10.activity_post.service.PostResponseGeneralData
+import com.example.apimethods10.activity_post.service.ResponsePostPersonalData_Primary
+import com.example.apimethods10.activity_post.service.ResponsePostGeneralData_Primary
 import com.example.apimethods10.view.MainActivity
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textview.MaterialTextView
@@ -32,7 +32,7 @@ class ActivityPostGeneralData : AppCompatActivity() {
     private lateinit var fieldResponseText: MaterialTextView
     private lateinit var buttonBack: MaterialButton
     private lateinit var progressBarLoading: ProgressBar
-    private lateinit var recyclerViewGetPersonalData: RecyclerView
+    private lateinit var recyclerViewPrimary: RecyclerView
     private var listPersonalData: List<ModelPostApi>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,7 +44,7 @@ class ActivityPostGeneralData : AppCompatActivity() {
         backActivity()
         buttonPostData()
         settingRecyclerView()
-        responseControllerPersonalData()
+        responsePersonalData()
 //        goToActivity()
     }
 
@@ -53,28 +53,28 @@ class ActivityPostGeneralData : AppCompatActivity() {
         buttonSendData.setOnClickListener {
             if (buttonSendData.isClickable) {
 
-                val title = enterSubTitle.text.toString()
-                val body = enterText.text.toString()
+                val titleEditText = enterSubTitle.text.toString()
+                val bodyEditText = enterText.text.toString()
 
-                if (title.isBlank() || body.isBlank()) {
+                if (titleEditText.isBlank() || bodyEditText.isBlank()) {
                     Toast.makeText(this, "Por favor, preencha todos os campos.", Toast.LENGTH_SHORT)
                         .show()
                 } else {
-                    responseControllerPost()
+                  responsePostGeneralData()
                 }
-                responseControllerPersonalData()
+              responsePersonalData()
                 settingRecyclerView()
             }
         }
     }
 
-    private fun responseControllerPost() {
+    private fun responsePostGeneralData() {
         val userId = enterChapter.text.toString()
         val title = enterSubTitle.text.toString()
         val body = enterText.text.toString()
 
-        val postController = PostControllerGeneralData()
-        postController.fetchPost(userId.toInt(), title, body, object : PostResponseGeneralData {
+        val postController = ControllerPostGeneralData_Primary()
+        postController.controllerPostGeneralData_Primaryt(userId.toInt(), title, body, object : ResponsePostGeneralData_Primary {
 
             override fun successPostResponse(post: ModelPostApi) {
                 progressBarLoading.visibility = View.INVISIBLE
@@ -82,8 +82,8 @@ class ActivityPostGeneralData : AppCompatActivity() {
                 val newPersonalData = mutableListOf<ModelPostApi>()
 
                 // Buscar dados estáticos da API
-                val staticDataController = PostControllerPersonalData()
-                staticDataController.controllerPersonalData(object : ResponsePostPersonalData {
+                val staticDataController = PostControllerPersonalData_Primary()
+                staticDataController.controllerPersonalData_primary(object : ResponsePostPersonalData_Primary {
                     override fun successResponsePersonalData(data: MutableList<ModelPostApi>) {
                         // Adicionar dados estáticos à lista
                         newPersonalData.addAll(data)
@@ -97,13 +97,15 @@ class ActivityPostGeneralData : AppCompatActivity() {
                         newPersonalData.add(personalData)
 
                         // Atualizar a RecyclerView com os dados
-                        val adapter = AdapterPostGeneralData(this@ActivityPostGeneralData, newPersonalData)
-                        recyclerViewGetPersonalData.adapter = adapter
+                        val adapter = AdapterPostGeneralData_Primary(this@ActivityPostGeneralData, newPersonalData)
+                        recyclerViewPrimary.adapter = adapter
                     }
 
                     override fun errorResponsePersonalData(errorPersonalData: String) {
                         progressBarLoading.visibility = View.VISIBLE
                     }
+
+
                 })
 
                 fieldResponseChapter.text = "▬ CAPÍTULO = ${post.id}"
@@ -117,14 +119,14 @@ class ActivityPostGeneralData : AppCompatActivity() {
         })
     }
 
-    private fun responseControllerPersonalData() {
-        val responseController = PostControllerPersonalData()
-        responseController.controllerPersonalData(object : ResponsePostPersonalData {
+    private fun responsePersonalData() {
+        val responseController = PostControllerPersonalData_Primary()
+        responseController.controllerPersonalData_primary(object : ResponsePostPersonalData_Primary {
 
             override fun successResponsePersonalData(data: MutableList<ModelPostApi>) {
                 progressBarLoading.visibility = View.INVISIBLE
                 listPersonalData = data
-                recyclerViewGetPersonalData.adapter?.notifyDataSetChanged()
+                recyclerViewPrimary.adapter?.notifyDataSetChanged()
             }
 
             override fun errorResponsePersonalData(errorPersonalData: String) {
@@ -134,8 +136,8 @@ class ActivityPostGeneralData : AppCompatActivity() {
     }
 
     private fun settingRecyclerView() {
-        recyclerViewGetPersonalData.setHasFixedSize(true)
-        recyclerViewGetPersonalData.layoutManager = LinearLayoutManager(
+        recyclerViewPrimary.setHasFixedSize(true)
+       recyclerViewPrimary.layoutManager = LinearLayoutManager(
             this, LinearLayoutManager.VERTICAL, false
         )
     }
@@ -175,7 +177,7 @@ class ActivityPostGeneralData : AppCompatActivity() {
         fieldResponseSubTitle = findViewById(R.id.txtVw_responseSubTitle_actvtPostGeneralData_id)
         fieldResponseText = findViewById(R.id.txtVw_responseText_actvtPostGeneralData_id)
         progressBarLoading = findViewById(R.id.prgrssBar_actvtPostGeneralData_id)
-        recyclerViewGetPersonalData = findViewById(R.id.rcclerVw_actvtPostGeneralData_id)
+        recyclerViewPrimary = findViewById(R.id.rcclerVw_actvtPostGeneralData_id)
     }
 
     /*sd*/

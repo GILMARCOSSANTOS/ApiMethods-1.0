@@ -5,7 +5,7 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
 
-interface PostServiceGeneralData {
+interface ServicePostGeneralData_Primary {
     @POST("posts")
     fun createPost(@Body post: ModelPostApi): Call<ModelPostApi>
 }
