@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@color/black"
         android:gravity="center"
-        android:text="@string/method_post"
+        android:text="POST - Dados Pessoais"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="35sp"
@@ -137,7 +137,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
-            android:text="▬ Capítulo: "
+            android:text="▬ CAPÍTULO: "
             android:textSize="21sp" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -146,7 +146,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
-            android:text="▬ Sub - Título: "
+            android:text="▬ TÍTULO: "
             android:textSize="21sp" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -155,7 +155,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
-            android:text="▬ Texto: "
+            android:text="▬ PARÁGRAFO: "
             android:textSize="21sp" />
 
         <View
@@ -180,6 +180,7 @@
         android:id="@+id/rcclerVw_actvtPostPersonalData_id"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="11dp"
         app:layout_constraintBottom_toTopOf="@id/bttn_back_actvtPostPersonalData_id"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

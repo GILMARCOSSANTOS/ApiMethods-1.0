@@ -107,9 +107,9 @@ class ActivityPostGeneralData : AppCompatActivity() {
                     }
                 })
 
-                fieldResponseChapter.text = "▬ Capítulo = ${post.id}"
-                fieldResponseSubTitle.text = "▬ Sub - Título: ${post.title}"
-                fieldResponseText.text = "▬ Texto: ${post.body}"
+                fieldResponseChapter.text = "▬ CAPÍTULO = ${post.id}"
+                fieldResponseSubTitle.text = "▬ TÍTULO: ${post.title}"
+                fieldResponseText.text = "▬ PARÁGRAFO: ${post.body}"
             }
 
             override fun errorPostResponse(errorPost: String) {
@@ -166,21 +166,16 @@ class ActivityPostGeneralData : AppCompatActivity() {
     }
 
     private fun globalVariablesScope() {
-        buttonGoToActivity = findViewById(R.id.bttn_goTo_actvtPostPersonalData_id)
-        buttonBack = findViewById(R.id.bttn_back_actvtPostPersonalData_id)
-        enterChapter = findViewById(R.id.edtTxt_chapter_actvtPostPersonalData_id)
-        enterSubTitle = findViewById(R.id.edtTxt_subTitle_actvtPostPersonalData_id)
-        enterText = findViewById(R.id.edtTxt_text_actvtPostPersonalData_id)
-        buttonSendData = findViewById(R.id.bttn_postData_actvtPostPersonalData_id)
-        fieldResponseChapter = findViewById(R.id.txtVw_responseChapter_actvtPostPersonalData_id)
-        fieldResponseSubTitle = findViewById(R.id.txtVw_responseSubTitle_actvtPostPersonalData_id)
-        fieldResponseText = findViewById(R.id.txtVw_responseText_actvtPostPersonalData_id)
-        progressBarLoading = findViewById(R.id.prgrssBar_actvtPostPersonalData_id)
-        recyclerViewGetPersonalData = findViewById(R.id.rcclerVw_actvtPostPersonalData_id)
+        buttonGoToActivity = findViewById(R.id.bttn_goTo_actvtPostGeneralData_id)
+        buttonBack = findViewById(R.id.bttn_back_actvtPostGeneralData_id)
+        enterChapter = findViewById(R.id.edtTxt_chapter_actvtPostGeneralData_id)
+        enterSubTitle = findViewById(R.id.edtTxt_subTitle_actvtPostGeneralData_id)
+        enterText = findViewById(R.id.edtTxt_text_actvtPostGeneralData_id)
+        buttonSendData = findViewById(R.id.bttn_postData_actvtPostGeneralData_id)
+        fieldResponseChapter = findViewById(R.id.txtVw_responseChapter_actvtPostGeneralData_id)
+        fieldResponseSubTitle = findViewById(R.id.txtVw_responseSubTitle_actvtPostGeneralData_id)
+        fieldResponseText = findViewById(R.id.txtVw_responseText_actvtPostGeneralData_id)
+        progressBarLoading = findViewById(R.id.prgrssBar_actvtPostGeneralData_id)
+        recyclerViewGetPersonalData = findViewById(R.id.rcclerVw_actvtPostGeneralData_id)
     }
 }
-
-
-
-
-/**/

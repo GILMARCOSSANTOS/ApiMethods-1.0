@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@color/black"
         android:gravity="center"
-        android:text="@string/method_post"
+        android:text="POST - Dados Gerais"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="35sp"
@@ -134,7 +134,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
-            android:text="▬ Capítulo: "
+            android:text="▬ CAPÍTULO: "
             android:textSize="21sp" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -143,7 +143,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
-            android:text="▬ Sub - Título: "
+            android:text="▬ TÍTULO: "
             android:textSize="21sp" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -152,7 +152,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
-            android:text="▬ Texto: "
+            android:text="▬ PARÁGRAFO: "
             android:textSize="21sp" />
 
         <View
@@ -177,9 +177,26 @@
         android:id="@+id/rcclerVw_actvtPostGeneralData_id"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="11dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bttn_goTo_actvtPostGeneralData_id"
         app:layout_constraintTop_toBottomOf="@id/txtVw_apiData_actvtPostGeneralData_id" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bttn_goTo_actvtPostGeneralData_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="7dp"
+        android:backgroundTint="@color/black"
+        android:text="Dados Pessoais"
+        android:textAllCaps="false"
+        android:textSize="25sp"
+      app:layout_constraintBottom_toTopOf="@id/bttn_back_actvtPostGeneralData_id"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/bttn_back_actvtPostGeneralData_id"
@@ -192,22 +209,7 @@
         android:text="@string/back"
         android:textAllCaps="false"
         android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@id/bttn_goTo_actvtPostPersonalData_id"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/bttn_goTo_actvtPostPersonalData_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="7dp"
-        android:backgroundTint="@color/black"
-        android:text="Dados Pessoais"
-        android:textAllCaps="false"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

@@ -105,9 +105,9 @@ class ActivityPostPersonalData : AppCompatActivity() {
                     }
                 })
 
-                fieldResponseChapter.text = "▬ Capítulo = ${post.id}"
-                fieldResponseSubTitle.text = "▬ Sub - Título: ${post.title}"
-                fieldResponseText.text = "▬ Texto: ${post.body}"
+                fieldResponseChapter.text = "▬ CAPÍTULO = ${post.id}"
+                fieldResponseSubTitle.text = "▬ TÍTULO: ${post.title}"
+                fieldResponseText.text = "▬ PARÁGRAGO: ${post.body}"
             }
 
             override fun errorPostResponse(errorPost: String) {
@@ -152,7 +152,7 @@ class ActivityPostPersonalData : AppCompatActivity() {
     }
 
     private fun globalVariablesScope() {
-        buttonBack = findViewById(R.id.bttn_goTo_actvtPostPersonalData_id)
+        buttonBack = findViewById(R.id.bttn_back_actvtPostPersonalData_id)
         enterChapter = findViewById(R.id.edtTxt_chapter_actvtPostPersonalData_id)
         enterSubTitle = findViewById(R.id.edtTxt_subTitle_actvtPostPersonalData_id)
         enterText = findViewById(R.id.edtTxt_text_actvtPostPersonalData_id)
