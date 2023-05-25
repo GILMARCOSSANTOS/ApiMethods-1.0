@@ -68,12 +68,12 @@ class ActivityPostGeneralData : AppCompatActivity() {
     }
 
     private fun responsePostGeneralData() {
-        val userId = enterChapter.text.toString()
-        val title = enterSubTitle.text.toString()
-        val body = enterText.text.toString()
+        val idEditText = enterChapter.text.toString()
+        val titleEditText = enterSubTitle.text.toString()
+        val bodyEditText = enterText.text.toString()
 
         val postController = ControllerPostPersonalData_GeneralData()
-        postController.controllerPostGeneralData_Primaryt(userId.toInt(), title, body, object : ResponsePostPersonalData_GeneralData {
+        postController.controllerPostGeneralData_Primaryt(idEditText.toInt(), titleEditText, bodyEditText, object : ResponsePostPersonalData_GeneralData {
 
             override fun successResponsePostPersonalData(successPostPersonalData: ModelPostApi) {
                 progressBarLoading.visibility = View.INVISIBLE

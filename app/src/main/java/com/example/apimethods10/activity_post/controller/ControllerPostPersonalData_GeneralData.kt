@@ -17,7 +17,7 @@ class ControllerPostPersonalData_GeneralData {
         val postService = ApiConnection().createService(ServicePostPersonalData_GeneralData::class.java)
 
         if (modelPersonalData != null) {
-            postService.createPost(modelPersonalData).enqueue(object : Callback<ModelPostApi> {
+            postService.servicePostPersonalData(modelPersonalData).enqueue(object : Callback<ModelPostApi> {
                 override fun onResponse(call: Call<ModelPostApi>, response: Response<ModelPostApi>) {
                     if (response.isSuccessful) {
                         responsePostPersonalData.successResponsePostPersonalData(response.body()!!)

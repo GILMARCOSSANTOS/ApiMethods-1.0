@@ -6,5 +6,5 @@ import retrofit2.http.GET
 
 interface ServicePostGeneralData_GeneralData {
     @GET("posts")
-    fun getServicePersonalData(): Call<List<ModelPostApi>>
+    fun servicePostGeneralData(): Call<List<ModelPostApi>>
 }

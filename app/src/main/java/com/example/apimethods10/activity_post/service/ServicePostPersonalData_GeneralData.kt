@@ -7,5 +7,5 @@ import retrofit2.http.POST
 
 interface ServicePostPersonalData_GeneralData {
     @POST("posts")
-    fun createPost(@Body post: ModelPostApi): Call<ModelPostApi>
+    fun servicePostPersonalData(@Body post: ModelPostApi): Call<ModelPostApi>
 }

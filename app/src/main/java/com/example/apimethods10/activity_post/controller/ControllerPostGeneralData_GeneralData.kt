@@ -17,7 +17,7 @@ class ControllerPostGeneralData_GeneralData() {
     fun controllerGeneralData_primary(returnResponse: ResponsePostGeneralData_GeneralData) {
 
         val service = apiConnection.createService(ServicePostGeneralData_GeneralData::class.java)
-        val call: Call<List<ModelPostApi>> = service.getServicePersonalData()
+        val call: Call<List<ModelPostApi>> = service.servicePostGeneralData()
 
         call.enqueue(object : Callback<List<ModelPostApi>> {
 
