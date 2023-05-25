@@ -13,8 +13,7 @@ import com.example.apimethods10.R
 import com.example.apimethods10.activity_post.adapter.AdapterPostGeneralData
 import com.example.apimethods10.activity_post.controller.PostControllerPersonalData
 import com.example.apimethods10.activity_post.controller.PostControllerGeneralData
-import com.example.apimethods10.activity_post.model.ModelPostPersonalData
-import com.example.apimethods10.activity_post.model.ModelPostGeneralData
+import com.example.apimethods10.activity_post.model.ModelPostApi
 import com.example.apimethods10.activity_post.service.ResponsePostPersonalData
 import com.example.apimethods10.activity_post.service.PostResponseGeneralData
 import com.example.apimethods10.view.MainActivity
@@ -34,7 +33,7 @@ class ActivityPostGeneralData : AppCompatActivity() {
     private lateinit var buttonBack: MaterialButton
     private lateinit var progressBarLoading: ProgressBar
     private lateinit var recyclerViewGetPersonalData: RecyclerView
-    private var listPersonalData: List<ModelPostPersonalData>? = null
+    private var listPersonalData: List<ModelPostApi>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +45,7 @@ class ActivityPostGeneralData : AppCompatActivity() {
         buttonPostData()
         settingRecyclerView()
         responseControllerPersonalData()
-        goToActivity()
+//        goToActivity()
     }
 
     private fun buttonPostData() {
@@ -77,20 +76,20 @@ class ActivityPostGeneralData : AppCompatActivity() {
         val postController = PostControllerGeneralData()
         postController.fetchPost(userId.toInt(), title, body, object : PostResponseGeneralData {
 
-            override fun successPostResponse(post: ModelPostGeneralData) {
+            override fun successPostResponse(post: ModelPostApi) {
                 progressBarLoading.visibility = View.INVISIBLE
 
-                val newPersonalData = mutableListOf<ModelPostPersonalData>()
+                val newPersonalData = mutableListOf<ModelPostApi>()
 
                 // Buscar dados estáticos da API
                 val staticDataController = PostControllerPersonalData()
                 staticDataController.controllerPersonalData(object : ResponsePostPersonalData {
-                    override fun successResponsePersonalData(data: MutableList<ModelPostPersonalData>) {
+                    override fun successResponsePersonalData(data: MutableList<ModelPostApi>) {
                         // Adicionar dados estáticos à lista
                         newPersonalData.addAll(data)
 
                         // Adicionar dados enviados à lista
-                        val personalData = ModelPostPersonalData(
+                        val personalData = ModelPostApi(
                             id = post.id,
                             title = post.title,
                             body = post.body
@@ -122,7 +121,7 @@ class ActivityPostGeneralData : AppCompatActivity() {
         val responseController = PostControllerPersonalData()
         responseController.controllerPersonalData(object : ResponsePostPersonalData {
 
-            override fun successResponsePersonalData(data: MutableList<ModelPostPersonalData>) {
+            override fun successResponsePersonalData(data: MutableList<ModelPostApi>) {
                 progressBarLoading.visibility = View.INVISIBLE
                 listPersonalData = data
                 recyclerViewGetPersonalData.adapter?.notifyDataSetChanged()
@@ -153,17 +152,17 @@ class ActivityPostGeneralData : AppCompatActivity() {
         }
     }
 
-    private fun goToActivity() {
-
-        buttonGoToActivity.setOnClickListener {
-            if (buttonGoToActivity.isClickable) {
-                val intent = Intent(this, ActivityPostPersonalData::class.java).apply {
-                }
-                startActivity(intent)
-                finish()
-            }
-        }
-    }
+//    private fun goToActivity() {
+//
+//        buttonGoToActivity.setOnClickListener {
+//            if (buttonGoToActivity.isClickable) {
+//                val intent = Intent(this, ActivityPostPersonalData::class.java).apply {
+//                }
+//                startActivity(intent)
+//                finish()
+//            }
+//        }
+//    }
 
     private fun globalVariablesScope() {
         buttonGoToActivity = findViewById(R.id.bttn_goTo_actvtPostGeneralData_id)

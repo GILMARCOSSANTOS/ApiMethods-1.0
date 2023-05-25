@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.apimethods10.R
-import com.example.apimethods10.activity_post.model.ModelPostPersonalData
+import com.example.apimethods10.activity_post.model.ModelPostApi
 import com.example.apiregisteruser_10.utils.Capitalize
 import java.util.*
 
 class AdapterPostPersonalData(
     private val context: Context,
-    private var listPersonalData: MutableList<ModelPostPersonalData>
+    private var listPersonalData: MutableList<ModelPostApi>
 ) : RecyclerView.Adapter<AdapterPostPersonalData.GetViewHolderPersonalData>() {
 
     private var capitalizeString = Capitalize()
@@ -66,7 +66,7 @@ class AdapterPostPersonalData(
         return listPersonalData.size
     }
 
-    fun addPersonalData(newData:MutableList<ModelPostPersonalData>) {
+    fun addPersonalData(newData:MutableList<ModelPostApi>) {
         val insertIndex = listPersonalData.size
         listPersonalData.addAll(newData)
         notifyItemRangeInserted(insertIndex, newData.size)
