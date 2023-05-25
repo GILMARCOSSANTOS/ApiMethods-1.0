@@ -3,7 +3,6 @@ package com.example.apimethods10.activity_post.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.ProgressBar
@@ -19,13 +18,10 @@ import com.example.apimethods10.activity_post.service.ResponsePostGeneralData_Ge
 import com.example.apimethods10.activity_post.service.ResponsePostPersonalData_GeneralData
 import com.example.apimethods10.view.MainActivity
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.tabs.TabLayout.TabGravity
 import com.google.android.material.textview.MaterialTextView
-import retrofit2.http.Tag
 
-class ActivityPostGeneralData : AppCompatActivity() {
+class ActivityPostPersonalData : AppCompatActivity() {
 
-    private lateinit var buttonGoToActivity: MaterialButton
     private lateinit var enterChapter: EditText
     private lateinit var enterSubTitle: EditText
     private lateinit var enterText: EditText
@@ -35,18 +31,17 @@ class ActivityPostGeneralData : AppCompatActivity() {
     private lateinit var fieldResponseText: MaterialTextView
     private lateinit var buttonBack: MaterialButton
     private lateinit var progressBarLoading: ProgressBar
-    private lateinit var recyclerViewGeneralData: RecyclerView
-    private var listGeneralData: List<ModelPostApi>? = null
+    private lateinit var recyclerViewPersonalData: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_post_general_data)
+        setContentView(R.layout.activity_post_personal_data)
 
-        /* Functions: */
+        /* Call Functions: */
         globalVariablesScope()
         backActivity()
         buttonPostData()
-        goToActivity()
+
     }
 
     private fun buttonPostData() {
@@ -104,10 +99,10 @@ class ActivityPostGeneralData : AppCompatActivity() {
 
                             // Atualizar a RecyclerView com os dados
                             val adapter = AdapterPostGeneralData_GeneralData(
-                                this@ActivityPostGeneralData,
+                                this@ActivityPostPersonalData,
                                 newPersonalData
                             )
-                            recyclerViewGeneralData.adapter = adapter
+                           recyclerViewPersonalData.adapter = adapter
                         }
 
                         override fun errorResponseGeneralData(errorPersonalData: String) {
@@ -127,8 +122,8 @@ class ActivityPostGeneralData : AppCompatActivity() {
     }
 
     private fun settingRecyclerView() {
-        recyclerViewGeneralData.setHasFixedSize(true)
-        recyclerViewGeneralData.layoutManager = LinearLayoutManager(
+        recyclerViewPersonalData.setHasFixedSize(true)
+        recyclerViewPersonalData.layoutManager = LinearLayoutManager(
             this, LinearLayoutManager.VERTICAL, false
         )
     }
@@ -145,29 +140,16 @@ class ActivityPostGeneralData : AppCompatActivity() {
         }
     }
 
-    private fun goToActivity() {
-
-        buttonGoToActivity.setOnClickListener {
-            if (buttonGoToActivity.isClickable) {
-                val intent = Intent(this, ActivityPostPersonalData::class.java).apply {
-                }
-                startActivity(intent)
-                finish()
-            }
-        }
-    }
-
     private fun globalVariablesScope() {
-        buttonGoToActivity = findViewById(R.id.bttn_goTo_actvtPostGeneralData_id)
-        buttonBack = findViewById(R.id.bttn_back_actvtPostGeneralData_id)
-        enterChapter = findViewById(R.id.edtTxt_chapter_actvtPostGeneralData_id)
-        enterSubTitle = findViewById(R.id.edtTxt_subTitle_actvtPostGeneralData_id)
-        enterText = findViewById(R.id.edtTxt_text_actvtPostGeneralData_id)
-        buttonSendData = findViewById(R.id.bttn_postData_actvtPostGeneralData_id)
-        fieldResponseChapter = findViewById(R.id.txtVw_responseChapter_actvtPostGeneralData_id)
-        fieldResponseSubTitle = findViewById(R.id.txtVw_responseSubTitle_actvtPostGeneralData_id)
-        fieldResponseText = findViewById(R.id.txtVw_responseText_actvtPostGeneralData_id)
-        progressBarLoading = findViewById(R.id.prgrssBar_actvtPostGeneralData_id)
-        recyclerViewGeneralData = findViewById(R.id.rcclerVw_actvtPostGeneralData_id)
+        buttonBack = findViewById(R.id.bttn_back_actvtPostPersonalData_id)
+        enterChapter = findViewById(R.id.edtTxt_chapter_actvtPostPersonalData_id)
+        enterSubTitle = findViewById(R.id.edtTxt_subTitle_actvtPostPersonalData_id)
+        enterText = findViewById(R.id.edtTxt_text_actvtPostPersonalData_id)
+        buttonSendData = findViewById(R.id.bttn_postData_actvtPostPersonalData_id)
+        fieldResponseChapter = findViewById(R.id.txtVw_responseChapter_actvtPostPersonalData_id)
+        fieldResponseSubTitle = findViewById(R.id.txtVw_responseSubTitle_actvtPostPersonalData_id)
+        fieldResponseText = findViewById(R.id.txtVw_responseText_actvtPostPersonalData_id)
+        progressBarLoading = findViewById(R.id.prgrssBar_actvtPostPersonalData_id)
+        recyclerViewPersonalData = findViewById(R.id.rcclerVw_actvtPostPersonalData_id)
     }
 }
