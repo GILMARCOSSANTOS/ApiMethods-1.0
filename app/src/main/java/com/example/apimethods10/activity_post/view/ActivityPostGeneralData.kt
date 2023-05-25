@@ -46,7 +46,6 @@ class ActivityPostGeneralData : AppCompatActivity() {
         globalVariablesScope()
         backActivity()
         buttonPostData()
-        settingRecyclerView()
 //        goToActivity()
     }
 
@@ -64,7 +63,6 @@ class ActivityPostGeneralData : AppCompatActivity() {
                 } else {
                     responsePostPersonalData()
                 }
-               // responseGeneralData()
                 settingRecyclerView()
             }
         }
@@ -126,24 +124,6 @@ class ActivityPostGeneralData : AppCompatActivity() {
                     progressBarLoading.visibility = View.VISIBLE
                 }
             })
-    }
-
-    private fun responseGeneralData() {
-        val responseController = ControllerPostGeneralData_GeneralData()
-        responseController.controllerGeneralData_primary(object :
-            ResponsePostGeneralData_GeneralData {
-
-            override fun successResponseGeneralData(bodyData: MutableList<ModelPostApi>) {
-                progressBarLoading.visibility = View.INVISIBLE
-                listGeneralData = bodyData
-                recyclerViewPrimary.adapter?.notifyDataSetChanged()
-                Log.d("API", "\"Resposta da API 003\" ${listGeneralData}")
-            }
-
-            override fun errorResponseGeneralData(errorPersonalData: String) {
-                progressBarLoading.visibility = View.VISIBLE
-            }
-        })
     }
 
     private fun settingRecyclerView() {
