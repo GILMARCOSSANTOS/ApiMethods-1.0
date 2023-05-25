@@ -10,12 +10,12 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.apimethods10.R
-import com.example.apimethods10.activity_post.adapter.AdapterPostGeneralData_Primary
-import com.example.apimethods10.activity_post.controller.PostControllerPersonalData_Primary
-import com.example.apimethods10.activity_post.controller.ControllerPostGeneralData_Primary
+import com.example.apimethods10.activity_post.adapter.AdapterPostGeneralData_GeneralData
+import com.example.apimethods10.activity_post.controller.ControllerPostGeneralData_GeneralData
+import com.example.apimethods10.activity_post.controller.ControllerPostPersonalData_GeneralData
 import com.example.apimethods10.activity_post.model.ModelPostApi
-import com.example.apimethods10.activity_post.service.ResponsePostPersonalData_Primary
-import com.example.apimethods10.activity_post.service.ResponsePostGeneralData_Primary
+import com.example.apimethods10.activity_post.service.ResponsePostGeneralData_GeneralData
+import com.example.apimethods10.activity_post.service.ResponsePostPersonal_GeneralData
 import com.example.apimethods10.view.MainActivity
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textview.MaterialTextView
@@ -44,7 +44,6 @@ class ActivityPostGeneralData : AppCompatActivity() {
         backActivity()
         buttonPostData()
         settingRecyclerView()
-        responsePersonalData()
 //        goToActivity()
     }
 
@@ -62,7 +61,7 @@ class ActivityPostGeneralData : AppCompatActivity() {
                 } else {
                   responsePostGeneralData()
                 }
-              responsePersonalData()
+              responseGeneralData()
                 settingRecyclerView()
             }
         }
@@ -73,8 +72,8 @@ class ActivityPostGeneralData : AppCompatActivity() {
         val title = enterSubTitle.text.toString()
         val body = enterText.text.toString()
 
-        val postController = ControllerPostGeneralData_Primary()
-        postController.controllerPostGeneralData_Primaryt(userId.toInt(), title, body, object : ResponsePostGeneralData_Primary {
+        val postController = ControllerPostPersonalData_GeneralData()
+        postController.controllerPostGeneralData_Primaryt(userId.toInt(), title, body, object : ResponsePostPersonal_GeneralData {
 
             override fun successPostResponse(post: ModelPostApi) {
                 progressBarLoading.visibility = View.INVISIBLE
@@ -82,8 +81,8 @@ class ActivityPostGeneralData : AppCompatActivity() {
                 val newPersonalData = mutableListOf<ModelPostApi>()
 
                 // Buscar dados estáticos da API
-                val staticDataController = PostControllerPersonalData_Primary()
-                staticDataController.controllerPersonalData_primary(object : ResponsePostPersonalData_Primary {
+                val staticDataController = ControllerPostGeneralData_GeneralData()
+                staticDataController.controllerGeneralData_primary(object : ResponsePostGeneralData_GeneralData {
                     override fun successResponsePersonalData(data: MutableList<ModelPostApi>) {
                         // Adicionar dados estáticos à lista
                         newPersonalData.addAll(data)
@@ -97,7 +96,7 @@ class ActivityPostGeneralData : AppCompatActivity() {
                         newPersonalData.add(personalData)
 
                         // Atualizar a RecyclerView com os dados
-                        val adapter = AdapterPostGeneralData_Primary(this@ActivityPostGeneralData, newPersonalData)
+                        val adapter = AdapterPostGeneralData_GeneralData(this@ActivityPostGeneralData, newPersonalData)
                         recyclerViewPrimary.adapter = adapter
                     }
 
@@ -119,9 +118,9 @@ class ActivityPostGeneralData : AppCompatActivity() {
         })
     }
 
-    private fun responsePersonalData() {
-        val responseController = PostControllerPersonalData_Primary()
-        responseController.controllerPersonalData_primary(object : ResponsePostPersonalData_Primary {
+    private fun responseGeneralData() {
+        val responseController = ControllerPostGeneralData_GeneralData()
+        responseController.controllerGeneralData_primary(object : ResponsePostGeneralData_GeneralData {
 
             override fun successResponsePersonalData(data: MutableList<ModelPostApi>) {
                 progressBarLoading.visibility = View.INVISIBLE

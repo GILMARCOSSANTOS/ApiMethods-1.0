@@ -11,10 +11,10 @@ import com.example.apimethods10.activity_post.model.ModelPostApi
 import com.example.apiregisteruser_10.utils.Capitalize
 import java.util.*
 
-class AdapterPostGeneralData_Primary(
+class AdapterPostGeneralData_GeneralData(
     private val context: Context,
     private var listGeneralData: MutableList<ModelPostApi>
-) : RecyclerView.Adapter<AdapterPostGeneralData_Primary.ViewHolderGeneralData>() {
+) : RecyclerView.Adapter<AdapterPostGeneralData_GeneralData.ViewHolderGeneralData>() {
 
     private var capitalizeString = Capitalize()
 

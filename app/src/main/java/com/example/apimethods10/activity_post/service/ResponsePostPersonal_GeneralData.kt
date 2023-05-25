@@ -2,7 +2,7 @@ package com.example.apimethods10.activity_post.service
 
 import com.example.apimethods10.activity_post.model.ModelPostApi
 
-interface ResponsePostGeneralData_Primary {
+interface ResponsePostPersonal_GeneralData {
     fun errorPostResponse(errorPost: String)
     fun successPostResponse(successPost: ModelPostApi)
 }
