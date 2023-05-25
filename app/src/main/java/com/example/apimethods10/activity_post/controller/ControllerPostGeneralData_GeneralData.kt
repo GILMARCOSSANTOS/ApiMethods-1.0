@@ -27,7 +27,7 @@ class ControllerPostGeneralData_GeneralData() {
             ) {
                 response.body()?.let {
                     val apiData = response.body()
-                    returnResponse.successResponsePersonalData(it as MutableList<ModelPostApi>)
+                    returnResponse.successResponseGeneralData(it as MutableList<ModelPostApi>)
                     println("Resposta de Sucesso (PrintLn) PostControllerPersonalData = $response")
                     Log.d(TAG, "Resposta de Sucesso (Log.D) PostControllerPersonalData = $apiData")
                 }

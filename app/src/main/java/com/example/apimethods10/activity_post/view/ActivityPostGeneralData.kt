@@ -83,7 +83,8 @@ class ActivityPostGeneralData : AppCompatActivity() {
                 // Buscar dados estáticos da API
                 val staticDataController = ControllerPostGeneralData_GeneralData()
                 staticDataController.controllerGeneralData_primary(object : ResponsePostGeneralData_GeneralData {
-                    override fun successResponsePersonalData(data: MutableList<ModelPostApi>) {
+
+                    override fun successResponseGeneralData(data: MutableList<ModelPostApi>) {
                         // Adicionar dados estáticos à lista
                         newPersonalData.addAll(data)
 
@@ -100,11 +101,9 @@ class ActivityPostGeneralData : AppCompatActivity() {
                         recyclerViewPrimary.adapter = adapter
                     }
 
-                    override fun errorResponsePersonalData(errorPersonalData: String) {
+                    override fun errorResponseGeneralData(errorPersonalData: String) {
                         progressBarLoading.visibility = View.VISIBLE
                     }
-
-
                 })
 
                 fieldResponseChapter.text = "▬ CAPÍTULO = ${post.id}"
@@ -122,13 +121,13 @@ class ActivityPostGeneralData : AppCompatActivity() {
         val responseController = ControllerPostGeneralData_GeneralData()
         responseController.controllerGeneralData_primary(object : ResponsePostGeneralData_GeneralData {
 
-            override fun successResponsePersonalData(data: MutableList<ModelPostApi>) {
+            override fun successResponseGeneralData(data: MutableList<ModelPostApi>) {
                 progressBarLoading.visibility = View.INVISIBLE
                 listPersonalData = data
                 recyclerViewPrimary.adapter?.notifyDataSetChanged()
             }
 
-            override fun errorResponsePersonalData(errorPersonalData: String) {
+            override fun errorResponseGeneralData(errorPersonalData: String) {
                 progressBarLoading.visibility = View.VISIBLE
             }
         })
