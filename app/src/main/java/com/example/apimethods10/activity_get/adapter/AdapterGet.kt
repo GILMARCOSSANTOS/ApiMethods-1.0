@@ -33,11 +33,11 @@ class AdapterGet(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersViewHolder {
         val layoutInflater = LayoutInflater.from(context).inflate(
-            R.layout.component_get,
+            R.layout.component_api,
             parent, false
         )
         val holder = UsersViewHolder(layoutInflater)
-        LayoutInflater.from(parent.context).inflate(R.layout.component_get, parent, false)
+        LayoutInflater.from(parent.context).inflate(R.layout.component_api, parent, false)
         return holder
     }
 

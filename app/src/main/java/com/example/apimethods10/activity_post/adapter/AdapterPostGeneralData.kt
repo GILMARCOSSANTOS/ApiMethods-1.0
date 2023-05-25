@@ -14,50 +14,50 @@ import java.util.*
 class AdapterPostGeneralData(
     private val context: Context,
     private var listGeneralData: MutableList<ModelPostApi>
-) : RecyclerView.Adapter<AdapterPostGeneralData.GetViewHolderPersonalData>() {
+) : RecyclerView.Adapter<AdapterPostGeneralData.ViewHolderGeneralData>() {
 
     private var capitalizeString = Capitalize()
 
-    class GetViewHolderPersonalData(view: View) : RecyclerView.ViewHolder(view) {
-        var id: TextView? = null
-        var title: TextView? = null
-        var body: TextView? = null
+    class ViewHolderGeneralData(view: View) : RecyclerView.ViewHolder(view) {
+        var idTextView: TextView? = null
+        var titleTextView: TextView? = null
+        var bodyTextView: TextView? = null
 
         init {
-            id = view.findViewById(R.id.txtVw_Id_componentGet_id)
-            title = view.findViewById(R.id.txtVw_title_componentGet_id)
-            body = view.findViewById(R.id.txtVw_body_componentGet_id)
+            idTextView = view.findViewById(R.id.txtVw_Id_componentGet_id)
+            titleTextView = view.findViewById(R.id.txtVw_title_componentGet_id)
+           bodyTextView = view.findViewById(R.id.txtVw_body_componentGet_id)
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GetViewHolderPersonalData {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderGeneralData {
         val layoutInflater =
-            LayoutInflater.from(context).inflate(R.layout.component_get, parent, false)
+            LayoutInflater.from(context).inflate(R.layout.component_api, parent, false)
 
-        val holder = GetViewHolderPersonalData(layoutInflater)
+        val holder = ViewHolderGeneralData(layoutInflater)
         LayoutInflater.from(parent.context)
-            .inflate(R.layout.component_get, parent, false)
+            .inflate(R.layout.component_api, parent, false)
         return holder
     }
 
-    override fun onBindViewHolder(holder: GetViewHolderPersonalData, position: Int) {
-        val dataPersonal = listGeneralData[position]
+    override fun onBindViewHolder(holder: ViewHolderGeneralData, position: Int) {
+        val generalData = listGeneralData[position]
 
-        if (dataPersonal != null) {
-            holder.id?.text = buildString {
+        if (generalData != null) {
+            holder.idTextView?.text = buildString {
                 append("▬▬▬▬▬ CAPÍTULO ")
-                append(dataPersonal.id.toString().padStart(3, '0'))
+                append(generalData.id.toString().padStart(3, '0'))
                 append(" ▬▬▬▬▬")
             }
 
-            holder.title?.text = buildString {
+            holder.titleTextView?.text = buildString {
                 append("▬▬▬ TÍTULO: \n")
-                append(dataPersonal.title.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString() })
+                append(generalData.title.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString() })
             }
 
-            holder.body?.text = buildString {
+            holder.bodyTextView?.text = buildString {
                 append("▬▬▬ PARÁGRAFO: \n")
-                append(capitalizeString.capitalize(dataPersonal.body))
+                append(capitalizeString.capitalize(generalData.body))
             }
         }
     }

@@ -32,11 +32,11 @@ class AdapterPostPersonalData(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GetViewHolderPersonalData {
         val layoutInflater =
-            LayoutInflater.from(context).inflate(R.layout.component_get, parent, false)
+            LayoutInflater.from(context).inflate(R.layout.component_api, parent, false)
 
         val holder = GetViewHolderPersonalData(layoutInflater)
         LayoutInflater.from(parent.context)
-            .inflate(R.layout.component_get, parent, false)
+            .inflate(R.layout.component_api, parent, false)
         return holder
     }
 
