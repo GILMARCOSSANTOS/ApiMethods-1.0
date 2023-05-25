@@ -178,4 +178,6 @@ class ActivityPostGeneralData : AppCompatActivity() {
         progressBarLoading = findViewById(R.id.prgrssBar_actvtPostGeneralData_id)
         recyclerViewGetPersonalData = findViewById(R.id.rcclerVw_actvtPostGeneralData_id)
     }
+
+    /*sd*/
 }
