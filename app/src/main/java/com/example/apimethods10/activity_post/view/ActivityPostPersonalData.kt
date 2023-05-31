@@ -41,7 +41,6 @@ class ActivityPostPersonalData : AppCompatActivity() {
         globalVariablesScope()
         backActivity()
         buttonPostData()
-
     }
 
     private fun buttonPostData() {
@@ -78,39 +77,22 @@ class ActivityPostPersonalData : AppCompatActivity() {
                 override fun successResponsePostPersonalData(successPostPersonalData: ModelPostApi) {
                     progressBarLoading.visibility = View.INVISIBLE
 
+                    /* Adicionar Dados Pessoais a RecyclerView: */
                     val newPersonalData = mutableListOf<ModelPostApi>()
-//                    newPersonalData.add(personalData)
-                    newPersonalData
 
-                    // Buscar dados estáticos da API
-                    val staticDataController = ControllerPostGeneralData_GeneralData()
-                    staticDataController.controllerGeneralData_primary(object :
-                        ResponsePostGeneralData_GeneralData {
+                    val personalData = ModelPostApi(
+                        id = successPostPersonalData.id,
+                        title = successPostPersonalData.title,
+                        body = successPostPersonalData.body
+                    )
+                    newPersonalData.add(personalData)
 
-                        override fun successResponseGeneralData(data: MutableList<ModelPostApi>) {
-                            // Adicionar dados estáticos à lista
-                           newPersonalData.addAll(data)
-
-                            // Adicionar dados enviados à lista
-                            val personalData = ModelPostApi(
-                                id = successPostPersonalData.id,
-                                title = successPostPersonalData.title,
-                                body = successPostPersonalData.body
-                            )
-                            newPersonalData.add(personalData)
-
-                            // Atualizar a RecyclerView com os dados
-                            val adapter = AdapterPostGeneralData_GeneralData(
-                                this@ActivityPostPersonalData,
-                                newPersonalData
-                            )
-                           recyclerViewPersonalData.adapter = adapter
-                        }
-
-                        override fun errorResponseGeneralData(errorPersonalData: String) {
-                            progressBarLoading.visibility = View.VISIBLE
-                        }
-                    })
+                    // Atualizar a RecyclerView com os dados
+                    val adapter = AdapterPostGeneralData_GeneralData(
+                        this@ActivityPostPersonalData,
+                        newPersonalData
+                    )
+                    recyclerViewPersonalData.adapter = adapter
 
                     fieldResponseChapter.text = "▬ CAPÍTULO = ${successPostPersonalData.id}"
                     fieldResponseSubTitle.text = "▬ TÍTULO: ${successPostPersonalData.title}"
