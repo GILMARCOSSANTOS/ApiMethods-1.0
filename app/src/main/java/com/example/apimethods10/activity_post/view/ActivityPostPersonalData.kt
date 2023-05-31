@@ -79,6 +79,8 @@ class ActivityPostPersonalData : AppCompatActivity() {
                     progressBarLoading.visibility = View.INVISIBLE
 
                     val newPersonalData = mutableListOf<ModelPostApi>()
+//                    newPersonalData.add(personalData)
+                    newPersonalData
 
                     // Buscar dados estáticos da API
                     val staticDataController = ControllerPostGeneralData_GeneralData()
@@ -87,7 +89,7 @@ class ActivityPostPersonalData : AppCompatActivity() {
 
                         override fun successResponseGeneralData(data: MutableList<ModelPostApi>) {
                             // Adicionar dados estáticos à lista
-                            newPersonalData.addAll(data)
+                           newPersonalData.addAll(data)
 
                             // Adicionar dados enviados à lista
                             val personalData = ModelPostApi(
