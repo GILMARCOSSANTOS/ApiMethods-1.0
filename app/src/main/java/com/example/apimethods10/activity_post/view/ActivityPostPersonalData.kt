@@ -22,7 +22,6 @@ import com.google.android.material.textview.MaterialTextView
 
 class ActivityPostPersonalData : AppCompatActivity() {
 
-    private lateinit var enterChapter: EditText
     private lateinit var enterSubTitle: EditText
     private lateinit var enterText: EditText
     private lateinit var buttonSendData: MaterialButton
@@ -63,13 +62,14 @@ class ActivityPostPersonalData : AppCompatActivity() {
     }
 
     private fun responsePostPersonalData() {
-        val idEditText = enterChapter.text.toString()
+
         val titleEditText = enterSubTitle.text.toString()
         val bodyEditText = enterText.text.toString()
 
         val controllerPersonalData = ControllerPostPersonalData_GeneralData()
         controllerPersonalData.controllerPostPersonalData(
-            idEditText.toInt(),
+
+            0,
             titleEditText,
             bodyEditText,
             object : ResponsePostPersonalData_GeneralData {
@@ -125,8 +125,8 @@ class ActivityPostPersonalData : AppCompatActivity() {
     }
 
     private fun globalVariablesScope() {
+
         buttonBack = findViewById(R.id.bttn_back_actvtPostPersonalData_id)
-        enterChapter = findViewById(R.id.edtTxt_chapter_actvtPostPersonalData_id)
         enterSubTitle = findViewById(R.id.edtTxt_subTitle_actvtPostPersonalData_id)
         enterText = findViewById(R.id.edtTxt_text_actvtPostPersonalData_id)
         buttonSendData = findViewById(R.id.bttn_postData_actvtPostPersonalData_id)

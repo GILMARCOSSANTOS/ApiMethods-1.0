@@ -26,7 +26,6 @@ import retrofit2.http.Tag
 class ActivityPostGeneralData : AppCompatActivity() {
 
     private lateinit var buttonGoToActivity: MaterialButton
-    private lateinit var enterChapter: EditText
     private lateinit var enterSubTitle: EditText
     private lateinit var enterText: EditText
     private lateinit var buttonSendData: MaterialButton
@@ -36,7 +35,6 @@ class ActivityPostGeneralData : AppCompatActivity() {
     private lateinit var buttonBack: MaterialButton
     private lateinit var progressBarLoading: ProgressBar
     private lateinit var recyclerViewGeneralData: RecyclerView
-    private var listGeneralData: List<ModelPostApi>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,13 +67,12 @@ class ActivityPostGeneralData : AppCompatActivity() {
     }
 
     private fun responsePostPersonalData() {
-        val idEditText = enterChapter.text.toString()
         val titleEditText = enterSubTitle.text.toString()
         val bodyEditText = enterText.text.toString()
 
         val controllerPersonalData = ControllerPostPersonalData_GeneralData()
         controllerPersonalData.controllerPostPersonalData(
-            idEditText.toInt(),
+          0,
             titleEditText,
             bodyEditText,
             object : ResponsePostPersonalData_GeneralData {
@@ -160,7 +157,6 @@ class ActivityPostGeneralData : AppCompatActivity() {
     private fun globalVariablesScope() {
         buttonGoToActivity = findViewById(R.id.bttn_goTo_actvtPostGeneralData_id)
         buttonBack = findViewById(R.id.bttn_back_actvtPostGeneralData_id)
-        enterChapter = findViewById(R.id.edtTxt_chapter_actvtPostGeneralData_id)
         enterSubTitle = findViewById(R.id.edtTxt_subTitle_actvtPostGeneralData_id)
         enterText = findViewById(R.id.edtTxt_text_actvtPostGeneralData_id)
         buttonSendData = findViewById(R.id.bttn_postData_actvtPostGeneralData_id)

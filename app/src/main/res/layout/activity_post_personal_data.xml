@@ -34,34 +34,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="5dp"
-            android:hint="@string/enter_subtitle"
-            android:inputType="textCapWords|textImeMultiLine"
-            android:textSize="20sp"
-            app:colorControlActivated="?attr/colorOnPrimary"
-            app:layout_constraintEnd_toEndOf="parent"
-            >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtTxt_chapter_actvtPostPersonalData_id"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:singleLine="true" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:hint="@string/enter_chapter"
             android:inputType="textCapWords|textImeMultiLine"
             android:textSize="20sp"
-            app:colorControlActivated="?attr/colorOnPrimary"
-            >
+            app:colorControlActivated="?attr/colorOnPrimary">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtTxt_subTitle_actvtPostPersonalData_id"

@@ -65,10 +65,4 @@ class AdapterPostGeneralData_GeneralData(
     override fun getItemCount(): Int {
         return listGeneralData.size
     }
-
-    fun addPersonalData(newData:MutableList<ModelPostApi>) {
-        val insertIndex = listGeneralData.size
-        listGeneralData.addAll(newData)
-        notifyItemRangeInserted(insertIndex, newData.size)
-    }
 }
